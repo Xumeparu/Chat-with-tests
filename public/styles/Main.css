@@ -20,7 +20,7 @@ h1 {
 }
 
 body {
-	background-image: url("images/back.gif");
+	background-image: url("../images/back.gif");
 	background-size: cover;
 	background-attachment: fixed;
 }
