@@ -14,4 +14,4 @@ class MessagesList extends React.Component {
     }
 }
 
-export default MessagesList;
+export default Message;
