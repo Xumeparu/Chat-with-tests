@@ -34,8 +34,6 @@ class App extends React.Component{
                 console.log('Запрос не удался');
             };
         }
-
-        this.setState({message:""})
     }
 
     getMessages(){
