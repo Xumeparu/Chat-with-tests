@@ -1,4 +1,4 @@
-const path = require('./paths.js');
+const paths = require('./paths.js');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -49,6 +49,15 @@ module.exports = {
                 use: [
                     'style-loader',
                     { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1 } },
+                ],
+            },
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    'style-loader',
+                    { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1 } },
+                    //{ loader: 'postcss-loader', options: { sourceMap: true } },
+                    { loader: 'sass-loader', options: { sourceMap: true } },
                 ],
             },
         ]

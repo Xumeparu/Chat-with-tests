@@ -14,6 +14,10 @@ class Form extends React.Component{
             nick: this.state.nick,
             message: this.state.message,
         });
+
+        this.setState({
+            message: '',
+        });
     }
 
     render(){

@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import MessagesList from "./components/MessagesList";
+import Index from "./components/PainCat";
 
 const URL = 'http://localhost:3000';
 
@@ -61,6 +62,7 @@ class App extends React.Component{
 
         return <>
             <h1>Chat</h1>
+            <Index/>
             <Form sendMessage={(newMessage) => this.sendMessage(newMessage)}/>
             <MessagesList messages={serverMessages}/>
         </>
