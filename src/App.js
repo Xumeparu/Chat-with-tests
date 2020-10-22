@@ -17,7 +17,7 @@ class App extends React.Component{
 
     sendMessage(newMessage){
         if(nick.value === '' || message.value === '')
-            alert('Заполните поля, пожалуйста :с');
+            alert('Пожалуйста, заполните поля.');
         else{
             let xhr = new XMLHttpRequest();
             xhr.open('POST', URL);
