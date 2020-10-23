@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier", "plugin:sonarjs/recommended"],
+  "plugins": ["prettier", "sonarjs"],
+  "settings": {
+    "pragma": "React",
+    "version": "detect"
+  },
+  "globals": {
+  "process": true,
+  "Promise": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "prettier/prettier": ["error"],
+    "quotes": [2, "double"],
+    "comma-dangle": [2, "never"],
+    "react/prop-types": [0]
+  }
+}

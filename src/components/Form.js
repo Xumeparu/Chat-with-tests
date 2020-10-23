@@ -1,15 +1,19 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 class Form extends React.Component{
     constructor(){
         super();
         this.state = {
-            nick: "",
-            message: ""
+            nick: '',
+            message: ''
         };
     }
 
-    handleSend(){
+    handleSend() {
+        if (this.state.nick === '' || this.state.message === '') {
+            alert('Пожалуйста, заполните поля.');
+        }
         this.props.sendMessage({
             nick: this.state.nick,
             message: this.state.message,
@@ -48,6 +52,10 @@ class Form extends React.Component{
             />
         </form>
     }
+}
+
+Form.propTypes = {
+    sendMessage: PropTypes.func,
 }
 
 export default Form;

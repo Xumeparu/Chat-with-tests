@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 class Message extends React.Component{
     render(){
@@ -8,6 +9,11 @@ class Message extends React.Component{
                 {message}
             </li>;
     }
+}
+
+Message.propTypes = {
+    nick: PropTypes.string,
+    message: PropTypes.string
 }
 
 export default Message;

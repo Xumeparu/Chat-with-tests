@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from './Message';
+import PropTypes from "prop-types";
 
 class MessagesList extends React.Component {
     render(){
@@ -12,6 +13,10 @@ class MessagesList extends React.Component {
             </ul>
         </div>;
     }
+}
+
+MessagesList.propTypes = {
+    messages: PropTypes.array
 }
 
 export default MessagesList;

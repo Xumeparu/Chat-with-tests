@@ -16,25 +16,21 @@ class App extends React.Component{
     }
 
     sendMessage(newMessage){
-        if(nick.value === '' || message.value === '')
-            alert('Пожалуйста, заполните поля.');
-        else{
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', URL);
-            xhr.send(JSON.stringify(newMessage));
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', URL);
+        xhr.send(JSON.stringify(newMessage));
 
-            xhr.onload = () => {
-                if (xhr.status !== 200) {
-                    console.error('Ошибка!');
-                } else {
-                    this.parseMessages(xhr.response);
-                }
-            };
+        xhr.onload = () => {
+            if (xhr.status !== 200) {
+                console.error('Ошибка!');
+            } else {
+                this.parseMessages(xhr.response);
+            }
+        };
 
-            xhr.onerror = function () {
-                console.log('Запрос не удался');
-            };
-        }
+        xhr.onerror = function () {
+            console.log('Запрос не удался');
+        };
     }
 
     getMessages(){
