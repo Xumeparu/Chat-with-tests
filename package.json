@@ -10,17 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack --config ./configs/webpack.production.js",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "lint-staged": {
-      "*.(js|jsx)": [
-        "eslint --fix"
-      ]
-    },
-    "prettier": "prettier --write \"src/**/*.js\"",
-    "husky": {
-      "hooks": {
-        "pre-commit": "lint-staged"
-      }
-    }
+    "prettier": "prettier --write \"src/**/*.js\""
   },
   "author": "",
   "license": "ISC",
@@ -75,6 +65,16 @@
     "transform": {
       "^.+\\.js$": "babel-jest",
       ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "eslint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   },
   "repository": {
