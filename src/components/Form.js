@@ -31,14 +31,14 @@ class Form extends React.Component{
             <input
                 value={nick}
                 type="text"
-                id="nick"
+                className="nick"
                 placeholder="Enter nickname"
                 onChange={e => this.setState({nick: e.target.value})}
             />
             <br/>
             <textarea
                 value={message}
-                id="message"
+                className="message"
                 placeholder="Enter your message"
                 onChange={e => this.setState({message: e.target.value})}
             >
@@ -46,7 +46,7 @@ class Form extends React.Component{
             <br/>
             <input
                 type="button"
-                id="button"
+                className="button"
                 value="Send"
                 onClick={() => this.handleSend()}
             />

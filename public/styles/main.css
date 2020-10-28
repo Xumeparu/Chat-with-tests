@@ -29,7 +29,7 @@ form {
 	margin-left: 150px;
 }
 
-#nick {
+.nick {
 	color: #17162d;
 	border-style: none;
 	border-radius: 4px;
@@ -37,7 +37,7 @@ form {
 	width: 700px;
 }
 
-#message {
+.message {
 	color: #17162d;
 	resize: none;
 	border-style: none;
@@ -46,11 +46,11 @@ form {
 	width: 700px;
 }
 
-#nick:hover, #message:hover, #button:hover {
+.nick:hover, .message:hover, .button:hover {
 	outline-color: white;
 }
 
-#button {
+.button {
 	color: #17162d;
 	background-color: #ffffff;
 	border-style: none;
@@ -60,7 +60,7 @@ form {
 	width: 200px;
 }
 
-#button:active {
+.button:active {
 	outline: none;
 }
 
