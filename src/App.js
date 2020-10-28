@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import LoginView from './views/LoginView';
 import RegistrationView from './views/RegistrationView';
 import ChatView from './views/ChatView';
@@ -8,6 +8,9 @@ class App extends React.Component{
     render(){
         return (
             <>
+                <Link to="/login">Login</Link>&nbsp;
+                <Link to="/registration">Registration</Link>&nbsp;
+                <Link to="/chat">Chat</Link>
                 <Switch>
                     <Route path="/login" component={LoginView}/>
                     <Route path="/registration" component={RegistrationView}/>

@@ -4,7 +4,7 @@ export default class LoginView extends React.Component {
     render() {
         return (
             <>
-                <h1>Логин</h1>
+                <h1>Login</h1>
             </>
         );
     }
