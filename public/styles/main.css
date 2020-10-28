@@ -65,14 +65,14 @@ form {
 }
 
 .links {
-	margin-left: 37%;
+	margin-left: 35%;
 	display: inline-block;
-	font-size: 20pt;
 }
 
 A:link, A:visited {
 	text-decoration: none;
-	color: #9d2043;
+	color: #ffffff;
+	font-size: 24pt;
 }
 
 #container {
