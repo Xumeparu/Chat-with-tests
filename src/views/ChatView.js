@@ -12,7 +12,15 @@ class ChatView extends React.Component{
             serverMessages:[]
         };
 
-        setInterval(this.getMessages.bind(this), 1000);
+        this.timer = null;
+    }
+
+    componentDidMount() {
+        this.timer = setInterval(this.getMessages.bind(this), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
     }
 
     sendMessage(newMessage){
