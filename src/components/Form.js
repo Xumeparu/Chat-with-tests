@@ -14,14 +14,16 @@ class Form extends React.Component{
         if (this.state.nick === '' || this.state.message === '') {
             alert('Пожалуйста, заполните поля.');
         }
-        this.props.sendMessage({
-            nick: this.state.nick,
-            message: this.state.message,
-        });
+        else {
+            this.props.sendMessage({
+                nick: this.state.nick,
+                message: this.state.message,
+            });
 
-        this.setState({
-            message: '',
-        });
+            this.setState({
+                message: '',
+            });
+        }
     }
 
     render(){
