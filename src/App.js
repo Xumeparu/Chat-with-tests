@@ -8,7 +8,7 @@ class App extends React.Component{
     render(){
         return (
             <>
-                <div className="container">
+                <div className="links">
                     <Link to="/login">Login</Link>&nbsp;
                     <Link to="/registration">Registration</Link>&nbsp;
                     <Link to="/chat">Chat</Link>
