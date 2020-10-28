@@ -2,7 +2,7 @@
 	font-family: "Diary of an 8-bit mage";
 	font-color: #ffffff;
 	font-size: 20pt;
-	text-shadow: 0.5px 0.5px 0.5px gray;
+	text-shadow: 1px 1px 1px gray;
 	margin: 5px;
 	padding: 10px;
 }
@@ -13,10 +13,10 @@ li {
 
 
 h1 {
+	text-align: center;
 	color: #ffffff;
 	font-size: 50pt;
 	margin-top: 20px;
-	margin-left: 420px;
 }
 
 body {
@@ -26,7 +26,7 @@ body {
 }
 
 form {
-	margin-left: 150px;
+	margin-left: 30%;
 }
 
 .nick {
@@ -64,12 +64,23 @@ form {
 	outline: none;
 }
 
+.links {
+	margin-left: 37%;
+	display: inline-block;
+	font-size: 20pt;
+}
+
+A:link, A:visited {
+	text-decoration: none;
+	color: #9d2043;
+}
+
 #container {
 	position: absolute;
 	top:0;
 	bottom: 0;
 	left: 0;
-	width: 0;
+	width: 96%;
 
 	display: flex;
 	flex-direction: column;
@@ -91,7 +102,7 @@ form {
 
 	color: #17162d;
 	margin-top: 10px;
-	margin-left: 168px;
+	margin-left: 31%;
 	width: 700px;
 
 	flex-grow: 1;
