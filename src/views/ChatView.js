@@ -1,11 +1,11 @@
 import React from 'react';
-import Form from './components/Form';
-import MessagesList from "./components/MessagesList";
-import Index from "./components/PainCat";
+import Form from '../components/Form';
+import MessagesList from "../components/MessagesList";
+import Index from "../components/PainCat";
 
 const URL = 'http://localhost:3000';
 
-class App extends React.Component{
+class ChatView extends React.Component{
     constructor(){
         super();
         this.state = {
@@ -65,4 +65,4 @@ class App extends React.Component{
     }
 }
 
-export default App;
+export default ChatView;
