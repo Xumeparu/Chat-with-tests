@@ -8,9 +8,11 @@ class App extends React.Component{
     render(){
         return (
             <>
-                <Link to="/login">Login</Link>&nbsp;
-                <Link to="/registration">Registration</Link>&nbsp;
-                <Link to="/chat">Chat</Link>
+                <div className="container">
+                    <Link to="/login">Login</Link>&nbsp;
+                    <Link to="/registration">Registration</Link>&nbsp;
+                    <Link to="/chat">Chat</Link>
+                </div>
                 <Switch>
                     <Route path="/login" component={LoginView}/>
                     <Route path="/registration" component={RegistrationView}/>
