@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Form from '../components/Form';
 import MessagesList from "../components/MessagesList";
 import Index from "../components/PainCat";
@@ -24,21 +25,16 @@ class ChatView extends React.Component{
     }
 
     sendMessage(newMessage){
-        let xhr = new XMLHttpRequest();
-        xhr.open('POST', URL);
-        xhr.send(JSON.stringify(newMessage));
-
-        xhr.onload = () => {
-            if (xhr.status !== 200) {
-                console.error('Ошибка!');
-            } else {
-                this.parseMessages(xhr.response);
-            }
-        };
-
-        xhr.onerror = function () {
-            console.log('Запрос не удался');
-        };
+        const instance = axios.create({
+            baseURL: 'http://localhost:3000'
+        });
+        instance
+            .post('/', {
+                nick: newMessage.nick,
+                message: newMessage.message
+            })
+            .then(response => this.parseMessages(response.data))
+            .catch(error => console.error(error));
     }
 
     getMessages(){
