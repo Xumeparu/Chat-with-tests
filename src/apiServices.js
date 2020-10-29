@@ -11,6 +11,6 @@ export default {
     },
     user: {
         create: ({ nickname, password }) => axiosInstance.post('/user', { nickname, password }),
-        profile: () => axiosInstance.get('/user')
+        getProfile: () => axiosInstance.get('/user')
     }
 };
