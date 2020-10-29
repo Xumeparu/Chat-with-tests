@@ -35,7 +35,7 @@ export default class LoginView extends React.Component {
         const { nickname, password, successMessage, errorMessage } = this.state;
         return (
             <>
-                <h1>Login</h1>
+                <h1>Authentication</h1>
                 <div className="su/er">
                     {successMessage}
                     {errorMessage}
