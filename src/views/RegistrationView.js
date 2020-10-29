@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from "prop-types";
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:3001'
@@ -26,6 +27,7 @@ export default class RegistrationView extends React.Component {
         axiosInstance
             .post('/user', {nickname, password})
             .then(() => this.setState({successMessage: "Success!"}))
+            .then(() => setTimeout(() => this.props.history.push('/login'),2000))
             .catch(error => this.setState({ errorMessage: "Error!" + error.response.data.error}));
     }
 
@@ -64,4 +66,8 @@ export default class RegistrationView extends React.Component {
             </>
         );
     }
+}
+
+RegistrationView.propTypes = {
+    history: PropTypes.object,
 }
