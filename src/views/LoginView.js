@@ -26,7 +26,7 @@ export default class LoginView extends React.Component {
         });
         axiosInstance
             .post('/auth', {nickname, password})
-            .then(() => this.setState({successMessage: "User registered successfully"}))
+            .then(() => this.setState({successMessage: "User registered successfully!"}))
             .then(() => setTimeout(() => this.props.history.push('/profile'),2000))
             .catch(error => this.setState({ errorMessage: "Error! " + error.response.data.error}));
     }
