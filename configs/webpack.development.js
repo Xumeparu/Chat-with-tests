@@ -11,6 +11,7 @@ module.exports = merge(common, {
         contentBase: paths.build,
         open: true,
         hot: true,
+        port: 3000
     },
 
     plugins: [
