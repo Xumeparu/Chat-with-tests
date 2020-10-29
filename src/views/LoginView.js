@@ -1,10 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from "prop-types";
-
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3001'
-});
+import apiServices from "../apiServices";
 
 export default class LoginView extends React.Component {
     constructor(props) {
@@ -24,8 +20,8 @@ export default class LoginView extends React.Component {
             successMessage: "",
             errorMessage: ""
         });
-        axiosInstance
-            .post('/auth', {nickname, password})
+        apiServices.auth
+            .login({ nickname, password })
             .then(() => this.setState({successMessage: "User registered successfully"}))
             .then(() => setTimeout(() => this.props.history.push('/profile'),2000))
             .catch(error => this.setState({ errorMessage: "Error! " + error.response.data.error}));
