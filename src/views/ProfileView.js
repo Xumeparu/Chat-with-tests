@@ -25,13 +25,13 @@ export default class ProfileView extends React.Component {
                 <h1>Profile</h1>
                 {user && (
                     <>
-                        <div>
+                        <div className="profile">
                             ID: { user.id }
                         </div>
-                        <div>
+                        <div className="profile">
                             Nickname: {user.nickname}
                         </div>
-                        <div>
+                        <div className="profile">
                             Created: {new Date(user.createdAt).toLocaleString()}
                         </div>
                     </>

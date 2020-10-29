@@ -42,6 +42,7 @@ export default class RegistrationView extends React.Component {
                             Nickname:&nbsp;
                             <input
                                 type="text"
+                                className="nick-pass"
                                 value={nickname}
                                 onChange={e => this.setState({ nickname: e.target.value})}
                             />
@@ -52,12 +53,13 @@ export default class RegistrationView extends React.Component {
                             Password:&nbsp;
                             <input
                                 type="password"
+                                className="nick-pass"
                                 value={password}
                                 onChange={e => this.setState({ password: e.target.value})}
                             />
                         </label>
                     </div>
-                    <button type="submit">Create user</button>
+                    <button type="submit" className="button">Create user</button>
                 </form>
             </>
         );
