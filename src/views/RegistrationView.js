@@ -26,9 +26,9 @@ export default class RegistrationView extends React.Component {
         });
         axiosInstance
             .post('/user', {nickname, password})
-            .then(() => this.setState({successMessage: "Success!"}))
+            .then(() => this.setState({successMessage: "Success! "}))
             .then(() => setTimeout(() => this.props.history.push('/login'),2000))
-            .catch(error => this.setState({ errorMessage: "Error!" + error.response.data.error}));
+            .catch(error => this.setState({ errorMessage: "Error! " + error.response.data.error}));
     }
 
     render() {
