@@ -6,6 +6,10 @@ import Index from "../components/PainCat";
 
 const URL = 'http://localhost:3000';
 
+const instance = axios.create({
+    baseURL: 'http://localhost:3000'
+});
+
 class ChatView extends React.Component{
     constructor(){
         super();
@@ -25,9 +29,6 @@ class ChatView extends React.Component{
     }
 
     sendMessage(newMessage){
-        const instance = axios.create({
-            baseURL: 'http://localhost:3000'
-        });
         instance
             .post('/', {
                 nick: newMessage.nick,

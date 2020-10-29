@@ -10,23 +10,34 @@ export default class RegistrationView extends React.Component {
         super(props);
         this.state = {
             nickname: "",
-            password: ""
+            password: "",
+            successMessage: "",
+            errorMessage: ""
         };
     }
 
     handleSubmit(e) {
-        axiosInstance.post('/user', {
-            nickname: this.state.nickname,
-            password: this.state.password
-        });
+        const { nickname, password } = this.state;
         e.preventDefault();
+        this.setState({
+            successMessage: "",
+            errorMessage: ""
+        });
+        axiosInstance
+            .post('/user', {nickname, password})
+            .then(() => this.setState({successMessage: "Success!"}))
+            .catch(error => this.setState({ errorMessage: "Error!" + error.response.data.error}));
     }
 
     render() {
-        const { nickname, password } = this.state;
+        const { nickname, password, successMessage, errorMessage } = this.state;
         return (
             <>
                 <h1>Registration</h1>
+                <div className="su/er">
+                    {successMessage}
+                    {errorMessage}
+                </div>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <div>
                         <label>
@@ -42,7 +53,7 @@ export default class RegistrationView extends React.Component {
                         <label>
                             Password:&nbsp;
                             <input
-                                type="text"
+                                type="password"
                                 value={password}
                                 onChange={e => this.setState({ password: e.target.value})}
                             />
