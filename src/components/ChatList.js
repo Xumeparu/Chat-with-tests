@@ -24,3 +24,5 @@ ChatList.propTypes = {
     ),
     clickHandle: PropTypes.func.isRequired
 };
+
+export default ChatList;
