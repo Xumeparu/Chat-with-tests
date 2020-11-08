@@ -13,13 +13,33 @@ export default class RegistrationView extends React.Component {
         };
     }
 
+    validate() {
+        const { nickname, password } = this.state;
+        if (nickname.length === 0) {
+            this.setState({
+                errorMessage: 'Enter your nickname, please'
+            });
+            return false;
+        }
+        if (password.length === 0) {
+            this.setState({
+                errorMessage: 'Enter your password, please'
+            });
+            return false;
+        }
+        return true;
+    }
+
     handleSubmit(e) {
         const { nickname, password } = this.state;
         e.preventDefault();
         this.setState({
-            successMessage: '',
-            errorMessage: ''
+            successMessage: null,
+            errorMessage: null
         });
+
+        if (!this.validate()) return;
+
         apiServices.user
             .create({ nickname, password })
             .then(() => this.setState({ successMessage: 'Success! ' }))
@@ -34,7 +54,7 @@ export default class RegistrationView extends React.Component {
         return (
             <>
                 <h1>Registration</h1>
-                <div className="su/er">
+                <div className="errorMessage">
                     {successMessage}
                     {errorMessage}
                 </div>
