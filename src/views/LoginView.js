@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import apiServices from '../apiServices';
+import styles from './LoginView.module.css';
 
 export default class LoginView extends React.Component {
     constructor(props) {
@@ -34,10 +35,8 @@ export default class LoginView extends React.Component {
         return (
             <>
                 <h1>Authentication</h1>
-                <div className="su-er">
-                    {successMessage}
-                    {errorMessage}
-                </div>
+                <div className={styles.errorMessage}>{errorMessage}</div>
+                <div className={styles.successMessage}>{successMessage}</div>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <div>
                         <label>

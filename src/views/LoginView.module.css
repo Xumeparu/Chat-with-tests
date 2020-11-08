@@ -1,0 +1,13 @@
+.errorMessage {
+    min-height: 0;
+    color: #9d2043;
+    text-shadow: 1px 1px 1px #17162d;
+}
+
+.successMessage {
+    min-height: 0;
+    color: #ffffff;
+    font-size: 24pt;
+    text-shadow: 1px 1px 1px #17162d;
+    text-align: center;
+}
