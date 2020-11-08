@@ -1,15 +1,15 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import apiServices from "../apiServices";
+import PropTypes from 'prop-types';
+import apiServices from '../apiServices';
 
 export default class LoginView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            nickname: "",
-            password: "",
-            successMessage: "",
-            errorMessage: ""
+            nickname: '',
+            password: '',
+            successMessage: '',
+            errorMessage: ''
         };
     }
 
@@ -17,14 +17,16 @@ export default class LoginView extends React.Component {
         const { nickname, password } = this.state;
         e.preventDefault();
         this.setState({
-            successMessage: "",
-            errorMessage: ""
+            successMessage: '',
+            errorMessage: ''
         });
         apiServices.auth
             .login({ nickname, password })
-            .then(() => this.setState({successMessage: "User registered successfully"}))
-            .then(() => setTimeout(() => this.props.history.push('/profile'),2000))
-            .catch(error => this.setState({ errorMessage: "Error! " + error.response.data.error}));
+            .then(() => this.setState({ successMessage: 'User registered successfully' }))
+            .then(() => setTimeout(() => this.props.history.push('/profile'), 2000))
+            .catch((error) =>
+                this.setState({ errorMessage: 'Error! ' + error.response.data.error })
+            );
     }
 
     render() {
@@ -44,7 +46,7 @@ export default class LoginView extends React.Component {
                                 type="text"
                                 className="nick-pass"
                                 value={nickname}
-                                onChange={e => this.setState({ nickname: e.target.value})}
+                                onChange={(e) => this.setState({ nickname: e.target.value })}
                             />
                         </label>
                     </div>
@@ -55,11 +57,13 @@ export default class LoginView extends React.Component {
                                 type="password"
                                 className="nick-pass"
                                 value={password}
-                                onChange={e => this.setState({ password: e.target.value})}
+                                onChange={(e) => this.setState({ password: e.target.value })}
                             />
                         </label>
                     </div>
-                    <button type="submit" className="button">Go!</button>
+                    <button type="submit" className="button">
+                        Go!
+                    </button>
                 </form>
             </>
         );
@@ -67,5 +71,5 @@ export default class LoginView extends React.Component {
 }
 
 LoginView.propTypes = {
-    history: PropTypes.object,
-}
+    history: PropTypes.object
+};
