@@ -28,6 +28,12 @@ export default class RegistrationView extends React.Component {
             });
             return false;
         }
+        if (password.length < 7) {
+            this.setState({
+                errorMessage: 'The password must be at least 7 characters long'
+            });
+            return false;
+        }
         return true;
     }
 
