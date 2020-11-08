@@ -6,11 +6,22 @@ class ChatList extends React.Component {
     render() {
         const { list, clickHandle } = this.props;
         return (
-            <ul>
-                {list.map((chat) => (
-                    <Chat id={chat.id} title={chat.title} clickHandle={clickHandle} key={chat.id} />
-                ))}
-            </ul>
+            <>
+                {list.length ? (
+                    <ul>
+                        {list.map((chat) => (
+                            <Chat
+                                id={chat.id}
+                                title={chat.title}
+                                clickHandle={clickHandle}
+                                key={chat.id}
+                            />
+                        ))}
+                    </ul>
+                ) : (
+                    <span>There are no chats yet :с</span>
+                )}
+            </>
         );
     }
 }
