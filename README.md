@@ -1,2 +1,3 @@
-ВКИ НГУ. Предмет "Проектирование и разработка интерфейсов пользователя", Д.А.Вайнер. Чат с тестами
+Design and development of user interfaces.
+Chat with tests
  
