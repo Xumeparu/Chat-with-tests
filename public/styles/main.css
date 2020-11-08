@@ -1,8 +1,8 @@
 * {
-	font-family: "Diary of an 8-bit mage";
-	font-color: #ffffff;
+	font-family: "Diary of an 8-bit mage", serif;
+	color: #ffffff;
 	font-size: 20pt;
-	text-shadow: 1px 1px 1px gray;
+	text-shadow: 1px 1px 1px #7f7f7f;
 	margin: 5px;
 	padding: 10px;
 }

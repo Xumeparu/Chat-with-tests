@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import apiServices from '../apiServices';
+import styles from './RegistrationView.module.css';
 
 export default class RegistrationView extends React.Component {
     constructor(props) {
@@ -54,7 +55,7 @@ export default class RegistrationView extends React.Component {
         return (
             <>
                 <h1>Registration</h1>
-                <div className="errorMessage">
+                <div className={styles.errorMessage}>
                     {successMessage}
                     {errorMessage}
                 </div>
