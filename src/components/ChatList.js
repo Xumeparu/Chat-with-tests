@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Chat from './Chat';
 
 class ChatList extends React.Component {
     render() {
-        return <ul>
-
-        </ul>;
+        const { list, clickHandle } = this.props;
+        return (
+            <ul>
+                {list.map((chat) => (
+                    <Chat id={chat.id} title={chat.title} clickHandle={clickHandle} key={chat.id} />
+                ))}
+            </ul>
+        );
     }
 }
 
