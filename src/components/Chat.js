@@ -8,10 +8,10 @@ class Chat extends React.Component {
     }
 
     render() {
-        const { title } =this.props;
+        const { title } = this.props;
         return (
             <li>
-                <a href="/" onClick={e => this.innerClickHandle(e)}>
+                <a href="/" onClick={(e) => this.innerClickHandle(e)}>
                     {title}
                 </a>
             </li>
