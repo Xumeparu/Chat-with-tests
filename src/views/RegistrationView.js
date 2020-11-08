@@ -62,8 +62,10 @@ export default class RegistrationView extends React.Component {
             <>
                 <h1>Registration</h1>
                 <div className={styles.errorMessage}>
-                    {successMessage}
                     {errorMessage}
+                </div>
+                <div className={styles.successMessage}>
+                    {successMessage}
                 </div>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <div>

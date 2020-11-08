@@ -4,3 +4,10 @@
     text-shadow: 1px 1px 1px #17162d;
     text-align: center;
 }
+
+.successMessage {
+    color: #ffffff;
+    font-size: 24pt;
+    text-shadow: 1px 1px 1px #17162d;
+    text-align: center;
+}
