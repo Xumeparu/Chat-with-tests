@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import apiServices from '../apiServices';
-import styles from '../../public/styles/RegistrationView.module.css';
+import styles from './RegistrationView.module.css';
 
 export default class RegistrationView extends React.Component {
     constructor(props) {

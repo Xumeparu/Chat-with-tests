@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import apiServices from '../apiServices';
-import styles from '../../public/styles/LoginView.module.css';
+import styles from './LoginView.module.css';
 
 export default class LoginView extends React.Component {
     constructor(props) {
