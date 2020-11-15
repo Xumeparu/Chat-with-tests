@@ -35,6 +35,7 @@ export default class RegistrationView extends React.Component {
             <>
                 <h1>Registration</h1>
                 <div className={styles.successMessage}>{this.state.successMessage}</div>
+                <div className={styles.mainError}>{this.state.errorMessage}</div>
                 <Formik
                     initialValues={{
                         nickname: '',
