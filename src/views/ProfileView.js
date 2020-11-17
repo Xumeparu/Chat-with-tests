@@ -3,6 +3,7 @@ import apiServices from '../apiServices';
 import ChatForm from '../components/ChatForm';
 import ChatList from '../components/ChatList';
 import PropTypes from 'prop-types';
+import SearchChatForm from '../components/SearchChatForm';
 
 export default class ProfileView extends React.Component {
     constructor(props) {
@@ -10,7 +11,8 @@ export default class ProfileView extends React.Component {
         this.state = {
             user: '',
             errorMessage: '',
-            chats: []
+            chats: [],
+            foundChats: []
         };
     }
 
@@ -40,8 +42,21 @@ export default class ProfileView extends React.Component {
         this.props.history.push(`/chat/${id}`);
     }
 
+    handleChatSearch({ title }) {
+        apiServices.chat
+            .search(title)
+            .then((response) => response.data)
+            .then((foundChats) => this.setState({ foundChats }));
+    }
+
+    handleFoundChatClick(id) {
+        if (!confirm('Join this chat?')) return;
+
+        apiServices.chat.join(id).then(() => this.getChatList());
+    }
+
     render() {
-        const { user, errorMessage, chats } = this.state;
+        const { user, errorMessage, chats, foundChats } = this.state;
         return (
             <>
                 <h1>Profile</h1>
@@ -57,6 +72,9 @@ export default class ProfileView extends React.Component {
                 {errorMessage}
                 <ChatList list={chats} clickHandle={(id) => this.handleChatClick(id)} />
                 <ChatForm handleSubmit={(data) => this.handleChatCreate(data)} />
+
+                <SearchChatForm handleSubmit={(data) => this.handleChatSearch(data)} />
+                <ChatList list={foundChats} clickHandle={(id) => this.handleFoundChatClick(id)} />
             </>
         );
     }
