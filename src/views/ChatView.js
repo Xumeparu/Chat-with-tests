@@ -1,26 +1,23 @@
 import React from 'react';
-import axios from 'axios';
-import Form from '../components/Form';
+import MessageForm from '../components/MessageForm';
 import MessagesList from '../components/MessagesList';
 import Index from '../components/PainCat';
-
-const URL = 'http://localhost:3000';
-
-const instance = axios.create({
-    baseURL: 'http://localhost:3000'
-});
+import apiServices from '../apiServices';
+import PropTypes from "prop-types";
 
 class ChatView extends React.Component {
     constructor() {
         super();
         this.state = {
-            serverMessages: []
+            messages: [],
+            user: []
         };
 
         this.timer = null;
     }
 
     componentDidMount() {
+        this.setState({ users: [], messages: [] });
         this.timer = setInterval(this.getMessages.bind(this), 1000);
     }
 
@@ -28,48 +25,57 @@ class ChatView extends React.Component {
         clearInterval(this.timer);
     }
 
-    sendMessage(newMessage) {
-        instance
-            .post('/', {
-                nick: newMessage.nick,
-                message: newMessage.message
-            })
-            .then((response) => this.parseMessages(response.data))
-            .catch((error) => console.error(error));
+    sendMessage({ content }) {
+        apiServices.message
+            .create({ content, chatId: this.props.match.params.id })
+            .then(() => this.getMessages());
     }
 
     getMessages() {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', URL);
-        xhr.send();
-        xhr.onload = () => {
-            if (xhr.status !== 200) {
-                console.error('Ошибка!');
-            } else {
-                this.parseMessages(xhr.response);
-            }
-        };
+        apiServices.message
+            .getMessages(this.props.match.params.id)
+            .then(response => response.data)
+            .then(messages => this.setState({ messages }))
+            .then(() => this.getUsers())
+            .then(() => {
+                const newMessages = this.state.messages.map(message => {
+                    const user = this.state.users.find(user => user.id === message.userId);
+                    message.nickname = user.nickname;
+                    return message;
+                });
+                this.setState({ messages: newMessages });
+            });
     }
 
-    parseMessages(response) {
-        const newServerMessages = JSON.parse(response);
-        this.setState({
-            serverMessages: newServerMessages
-        });
+    getUsers() {
+        const oldUsers = this.state.users;
+        const oldUsersIds = oldUsers.map(user => user.id);
+        const newUsersIds = [...new Set(this.state.messages.map((message) => message.userId))];
+        const toLoad = newUsersIds.filter((id) => !oldUsersIds.includes(id));
+
+        if (!toLoad.length) return;
+
+        return Promise.all(toLoad.map((id) => apiServices.user.getById(id)))
+            .then(response => response.map(response => response.data))
+            .then(newUsers => this.setState({ users: [...oldUsers, ...newUsers] }));
     }
 
     render() {
-        const { serverMessages } = this.state;
+        const { messages } = this.state;
 
         return (
             <>
                 <h1>Chat</h1>
                 <Index />
-                <Form sendMessage={(newMessage) => this.sendMessage(newMessage)} />
-                <MessagesList messages={serverMessages} />
+                <MessageForm sendMessage={(data) => this.sendMessage(data)} />
+                <MessagesList messages={messages} />
             </>
         );
     }
 }
+
+ChatView.propTypes = {
+    match: PropTypes.object
+};
 
 export default ChatView;

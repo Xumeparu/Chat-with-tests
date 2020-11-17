@@ -13,13 +13,12 @@ class App extends React.Component {
                     <Link to="/auth">Authentication</Link>&nbsp;
                     <Link to="/registration">Registration</Link>&nbsp;
                     <Link to="/profile">Profile</Link>&nbsp;
-                    <Link to="/chat">Chat</Link>
                 </div>
                 <Switch>
                     <Route path="/auth" component={LoginView} />
                     <Route path="/registration" component={RegistrationView} />
                     <Route path="/profile" component={ProfileView} />
-                    <Route path="/chat" component={ChatView} />
+                    <Route path="/chat/:id" component={ChatView} />
                     <Redirect exact from="/" to="/auth" />
                 </Switch>
             </>

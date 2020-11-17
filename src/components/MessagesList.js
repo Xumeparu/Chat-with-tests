@@ -8,8 +8,12 @@ class MessagesList extends React.Component {
         return (
             <div id="messages">
                 <ul>
-                    {messages.map((message, index) => (
-                        <Message nick={message.nick} message={message.message} key={index} />
+                    {messages.map((message) => (
+                        <Message
+                            nick={message.nickname}
+                            message={message.content}
+                            key={message.id}
+                        />
                     ))}
                 </ul>
             </div>

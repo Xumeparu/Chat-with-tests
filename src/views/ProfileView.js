@@ -2,7 +2,7 @@ import React from 'react';
 import apiServices from '../apiServices';
 import ChatForm from '../components/ChatForm';
 import ChatList from '../components/ChatList';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 export default class ProfileView extends React.Component {
     constructor(props) {
@@ -55,8 +55,8 @@ export default class ProfileView extends React.Component {
                     </>
                 )}
                 {errorMessage}
-                <ChatList list={chats} clickHandle={id => this.handleChatClick(id)} />
-                <ChatForm handleSubmit={data => this.handleChatCreate(data)} />
+                <ChatList list={chats} clickHandle={(id) => this.handleChatClick(id)} />
+                <ChatForm handleSubmit={(data) => this.handleChatCreate(data)} />
             </>
         );
     }
