@@ -2,27 +2,66 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Chat extends React.Component {
-    innerClickHandle(e) {
+    isOwner() {
+        return this.props.userId === this.props.chat.userId;
+    }
+
+    isParticipants() {
+        return this.props.chat.participants.includes(this.props.userId);
+    }
+
+    renderChat() {
+        if (this.isOwner()) {
+            return (
+                <>
+                    <a href="/" onClick={(e) => this.innerClickHandler(e)}>
+                        {this.props.chat.title}
+                    </a>
+                    <button onClick={() => this.props.deleteHandler(this.props.chat.id)}>
+                        Delete
+                    </button>
+                </>
+            );
+        }
+        if (this.isParticipants()) {
+            return (
+                <>
+                    <a href="/" onClick={(e) => this.innerClickHandler(e)}>
+                        {this.props.chat.title}
+                    </a>
+                    {/* TODO: exit button */}
+                </>
+            );
+        }
+        return (
+            <>
+                <span>{this.props.chat.title}</span>
+                <button onClick={() => this.props.joinHandler(this.props.chat.id)}>Join</button>
+            </>
+        );
+    }
+
+    innerClickHandler(e) {
         e.preventDefault();
-        this.props.clickHandle(this.props.id);
+        this.props.goHandler(this.props.chat.id);
     }
 
     render() {
-        const { title } = this.props;
-        return (
-            <li>
-                <a href="/" onClick={(e) => this.innerClickHandle(e)}>
-                    {title}
-                </a>
-            </li>
-        );
+        return <li>{this.renderChat()}</li>;
     }
 }
 
 Chat.propTypes = {
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    clickHandle: PropTypes.func.isRequired
+    userId: PropTypes.string.isRequired,
+    chat: PropTypes.shape({
+        userId: PropTypes.string,
+        id: PropTypes.string,
+        title: PropTypes.string,
+        participants: PropTypes.arrayOf(PropTypes.string)
+    }),
+    goHandler: PropTypes.func,
+    joinHandler: PropTypes.func,
+    deleteHandler: PropTypes.func
 };
 
 export default Chat;

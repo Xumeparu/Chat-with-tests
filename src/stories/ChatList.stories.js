@@ -11,25 +11,31 @@ const Template = (args) => <ChatList {...args} />;
 
 export const Common = Template.bind({});
 Common.args = {
+    userId: '1',
     list: [
         {
-            id: '19',
-            title: 'My chat'
+            id: '1',
+            createdAt: '2020-11-17T17:16:28.123Z',
+            title: 'My chat',
+            userId: '1',
+            participants: ['1', '2']
         },
         {
-            id: '4',
-            title: 'My second chat'
+            id: '2',
+            createdAt: '2020-11-17T17:16:28.1231Z',
+            title: 'My second chat',
+            userId: '2',
+            participants: ['1', '2']
         },
         {
-            id: '26',
-            title: 'My third chat'
+            id: '3',
+            createdAt: '2020-11-17T17:16:28.1232Z',
+            title: 'My third chat',
+            userId: '2',
+            participants: ['2', '3']
         }
     ],
-    clickHandle: action('Chat clicked')
-};
-
-export const EmptyList = Template.bind({});
-EmptyList.args = {
-    list: [],
-    clickHandle: action('Chat clicked')
+    goHandler: action('Go'),
+    joinHandler: action('Join'),
+    deleteHandler: action('Delete')
 };

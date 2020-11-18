@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 
 class Message extends React.Component {
     render() {
-        const { nick, message } = this.props;
+        const { nickname, content } = this.props;
         return (
             <li>
-                <b>{nick}:</b>
-                {message}
+                <b>{nickname}:</b>
+                {content}
             </li>
         );
     }
 }
 
 Message.propTypes = {
-    nick: PropTypes.string,
-    message: PropTypes.string
+    nickname: PropTypes.string,
+    content: PropTypes.string
 };
 
 export default Message;
