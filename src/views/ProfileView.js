@@ -21,7 +21,9 @@ export default class ProfileView extends React.Component {
             .getProfile()
             .then((response) => response.data)
             .then((user) => this.setState({ user }))
-            .then(() => this.getChatList())
+            .then(() => apiServices.chat.getMyChats(this.state.user.id))
+            .then((response) => response.data)
+            .then((chats) => this.setState({ chats }))
             .catch((error) =>
                 this.setState({ errorMessage: 'Error! ' + error.response.data.error })
             );
@@ -75,6 +77,7 @@ export default class ProfileView extends React.Component {
                     </>
                 )}
                 {errorMessage}
+                <h3>My chats</h3>
                 <ChatList
                     userId={user?.id}
                     list={chats}

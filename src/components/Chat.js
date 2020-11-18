@@ -6,7 +6,7 @@ class Chat extends React.Component {
         return this.props.userId === this.props.chat.userId;
     }
 
-    isParticipants() {
+    isParticipant() {
         return this.props.chat.participants.includes(this.props.userId);
     }
 
@@ -23,7 +23,7 @@ class Chat extends React.Component {
                 </>
             );
         }
-        if (this.isParticipants()) {
+        if (this.isParticipant()) {
             return (
                 <>
                     <a href="/" onClick={(e) => this.innerClickHandler(e)}>
