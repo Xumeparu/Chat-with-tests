@@ -34,7 +34,7 @@ class MessageForm extends React.Component {
                     type="text"
                     className="message"
                     placeholder="Enter your message"
-                    onChange={(e) => this.setState({ nick: e.target.value })}
+                    onChange={(e) => this.setState({ nickname: e.target.value })}
                 />
                 <br />
                 <button type="submit" className="button">

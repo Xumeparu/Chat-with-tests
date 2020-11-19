@@ -10,8 +10,8 @@ class MessagesList extends React.Component {
                 <ul>
                     {messages.map((message) => (
                         <Message
-                            nick={message.nickname}
-                            message={message.content}
+                            nickname={message.nickname}
+                            content={message.content}
                             key={message.id}
                         />
                     ))}

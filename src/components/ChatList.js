@@ -28,7 +28,7 @@ class ChatList extends React.Component {
 }
 
 ChatList.propTypes = {
-    userId: PropTypes.string.isRequired,
+    userId: PropTypes.string,
     list: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string,
