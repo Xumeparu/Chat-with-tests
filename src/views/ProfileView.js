@@ -17,16 +17,7 @@ export default class ProfileView extends React.Component {
     }
 
     componentDidMount() {
-        apiServices.user
-            .getProfile()
-            .then((response) => response.data)
-            .then((user) => this.setState({ user }))
-            .then(() => apiServices.chat.getMyChats(this.state.user.id))
-            .then((response) => response.data)
-            .then((chats) => this.setState({ chats }))
-            .catch((error) =>
-                this.setState({ errorMessage: 'Error! ' + error.response.data.error })
-            );
+        this.getChatList();
     }
 
     handleChatCreate({ title }) {
@@ -35,7 +26,7 @@ export default class ProfileView extends React.Component {
 
     getChatList() {
         apiServices.chat
-            .getMyChats(this.state.user.id)
+            .getMyChats(this.props.user.id)
             .then((response) => response.data)
             .then((chats) => this.setState({ chats }));
     }
@@ -64,7 +55,8 @@ export default class ProfileView extends React.Component {
     }
 
     render() {
-        const { user, errorMessage, chats, foundChats } = this.state;
+        const { errorMessage, chats, foundChats } = this.state;
+        const { user } = this.props;
         return (
             <>
                 <h1>Profile</h1>
@@ -79,7 +71,7 @@ export default class ProfileView extends React.Component {
                 {errorMessage}
                 <h3>My chats</h3>
                 <ChatList
-                    userId={user?.id}
+                    userId={user.id}
                     list={chats}
                     goHandler={(id) => this.goHandler(id)}
                     joinHandler={(id) => this.joinHandler(id)}
@@ -89,7 +81,7 @@ export default class ProfileView extends React.Component {
 
                 <SearchChatForm handleSubmit={(data) => this.handleChatSearch(data)} />
                 <ChatList
-                    userId={user?.id}
+                    userId={user.id}
                     list={foundChats}
                     goHandler={(id) => this.goHandler(id)}
                     joinHandler={(id) => this.joinHandler(id)}
@@ -101,5 +93,6 @@ export default class ProfileView extends React.Component {
 }
 
 ProfileView.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object,
+    user: PropTypes.object
 };

@@ -23,11 +23,18 @@ export default class LoginView extends React.Component {
             .login(values)
             .then(() => {
                 this.setState({ successMessage: 'User registered successfully' });
-                setTimeout(() => this.props.history.push('/profile'), 2000);
+                setTimeout(() => this.authSuccess(), 2000);
             })
             .catch((error) =>
                 this.setState({ errorMessage: 'Error! ' + error.response.data.error })
             );
+    }
+
+    authSuccess() {
+        const redirectUrl = this.props.location.state.from.pathname
+            ? this.props.location.state.from.pathname
+            : '/profile';
+        this.props.authStateHandler().then(() => this.props.history.push(redirectUrl));
     }
 
     render() {
@@ -109,5 +116,7 @@ export default class LoginView extends React.Component {
 }
 
 LoginView.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object,
+    authStateHandler: PropTypes.func,
+    location: PropTypes.any
 };

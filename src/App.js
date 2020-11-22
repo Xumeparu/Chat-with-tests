@@ -13,7 +13,7 @@ class PrivateRoute extends React.Component {
         return (
             <Route
                 {...rest}
-                render={routeProps =>
+                render={(routeProps) =>
                     user ? (
                         <Component {...componentProps} {...routeProps} />
                     ) : (
@@ -30,38 +30,78 @@ class PrivateRoute extends React.Component {
     }
 }
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: null
+            user: null,
+            isLoading: true
         };
+        this.authStateHandler = this.authStateHandler.bind(this);
     }
 
     componentDidMount() {
-        apiServices.user
+        this.getCurrentUser();
+    }
+
+    getCurrentUser() {
+        return apiServices.user
             .getProfile()
             .then((response) => response.data)
-            .then((user) => this.setState({ user }));
+            .then((user) => this.setState({ user, isLoading: false }))
+            .catch(() => this.setState({ user: null, isLoading: false }));
+    }
+
+    authStateHandler() {
+        return this.getCurrentUser();
+    }
+
+    logoutHandler() {
+        apiServices.auth.logout().then(() => this.setState({ user: null }));
     }
 
     render() {
-        const { user } = this.state;
+        const { user, isLoading } = this.state;
+
+        if (isLoading) {
+            return <>Loading...</>;
+        }
 
         return (
             <>
-                <div className="links">
-                    <Link to="/auth">Authentication</Link>&nbsp;
-                    <Link to="/registration">Registration</Link>&nbsp;
-                    <Link to="/profile">Profile</Link>&nbsp;
-                </div>
+                {user ? (
+                    <>
+                        <div className="links">
+                            <Link to="/profile">Profile {user.nickname}</Link>&nbsp;
+                        </div>
+                        <div>
+                            <button onClick={() => this.logoutHandler()}>Logout</button>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="links">
+                            <Link to="/auth">Authentication</Link>&nbsp;
+                            <Link to="/registration">Registration</Link>&nbsp;
+                        </div>
+                    </>
+                )}
                 <Switch>
-                    <Route path="/auth" component={LoginView} />
+                    <Route
+                        path="/auth"
+                        render={(routeProps) => (
+                            <LoginView authStateHandler={this.authStateHandler} {...routeProps} />
+                        )}
+                    />
                     <Route path="/registration" component={RegistrationView} />
                     <PrivateRoute user={user} path="/profile" component={ProfileView} />
-                    <PrivateRoute user={user} path="/chat/:id" component={ChatView} />
-                    <Redirect exact from="/" to="/profile" />
+                    <PrivateRoute
+                        user={user}
+                        path="/chat/:id"
+                        component={ChatView}
+                        componentProps={{ user }}
+                    />
+                    <Redirect from="/" to="/profile" />
                 </Switch>
             </>
         );
@@ -69,9 +109,9 @@ class App extends React.Component {
 }
 
 PrivateRoute.propTypes = {
-    user: PropTypes.string,
+    user: PropTypes.object,
     component: PropTypes.any,
     componentProps: PropTypes.any
-}
+};
 
 export default App;
