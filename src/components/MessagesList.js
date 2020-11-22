@@ -7,11 +7,11 @@ class MessagesList extends React.Component {
         const { messages } = this.props;
         return (
             <div id="messages">
-                <ul>
+                <ul className="message-list">
                     {messages.map((message) => (
                         <Message
-                            nickname={message.nickname}
                             content={message.content}
+                            nickname={message.nickname}
                             key={message.id}
                         />
                     ))}

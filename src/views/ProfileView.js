@@ -2,15 +2,13 @@ import React from 'react';
 import apiServices from '../apiServices';
 import ChatForm from '../components/ChatForm';
 import ChatList from '../components/ChatList';
-import PropTypes from 'prop-types';
 import SearchChatForm from '../components/SearchChatForm';
+import PropTypes from 'prop-types';
 
 export default class ProfileView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: '',
-            errorMessage: '',
             chats: [],
             foundChats: []
         };
@@ -36,13 +34,13 @@ export default class ProfileView extends React.Component {
     }
 
     joinHandler(id) {
-        if (!confirm('Join this chat?')) return;
+        if (!confirm('Do you want to join this chat?')) return;
 
         apiServices.chat.join(id).then(() => this.getChatList());
     }
 
     deleteHandler(id) {
-        if (!confirm('Delete this chat?')) return;
+        if (!confirm('Do you want to delete this chat?')) return;
 
         apiServices.chat.delete(id).then(() => this.getChatList());
     }
@@ -55,20 +53,13 @@ export default class ProfileView extends React.Component {
     }
 
     render() {
-        const { errorMessage, chats, foundChats } = this.state;
+        const { chats, foundChats } = this.state;
         const { user } = this.props;
         return (
             <>
                 <h1>Profile</h1>
-                {user && (
-                    <>
-                        <div className="profile">Nickname: {user.nickname}</div>
-                        <div className="profile">
-                            Created: {new Date(user.createdAt).toLocaleString()}
-                        </div>
-                    </>
-                )}
-                {errorMessage}
+                <div className="profile">Nickname: {user.nickname}</div>
+                <div className="profile">Created: {new Date(user.createdAt).toLocaleString()}</div>
                 <h3>My chats</h3>
                 <ChatList
                     userId={user.id}

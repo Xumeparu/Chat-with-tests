@@ -35,35 +35,33 @@ class App extends React.Component {
         super(props);
         this.state = {
             user: null,
-            isLoading: true
+            initDone: true
         };
-        this.authStateHandler = this.authStateHandler.bind(this);
+        this.updateAuthState = this.updateAuthState.bind(this);
     }
 
     componentDidMount() {
-        this.getCurrentUser();
+        this.updateAuthState();
     }
 
-    getCurrentUser() {
+    updateAuthState() {
         return apiServices.user
             .getProfile()
             .then((response) => response.data)
-            .then((user) => this.setState({ user, isLoading: false }))
-            .catch(() => this.setState({ user: null, isLoading: false }));
-    }
-
-    authStateHandler() {
-        return this.getCurrentUser();
+            .then((user) => this.setState({ user, initDone: true }))
+            .catch(() => this.setState({ user: null, initDone: true }));
     }
 
     logoutHandler() {
-        apiServices.auth.logout().then(() => this.setState({ user: null }));
+        apiServices.auth.logout().then(() => {
+            this.setState({ user: null });
+        });
     }
 
     render() {
-        const { user, isLoading } = this.state;
+        const { user, initDone } = this.state;
 
-        if (isLoading) {
+        if (!initDone) {
             return <>Loading...</>;
         }
 
@@ -88,20 +86,20 @@ class App extends React.Component {
                 )}
                 <Switch>
                     <Route
-                        path="/auth"
+                        path="/login"
                         render={(routeProps) => (
-                            <LoginView authStateHandler={this.authStateHandler} {...routeProps} />
+                            <LoginView updateAuthState={this.updateAuthState} {...routeProps} />
                         )}
                     />
                     <Route path="/registration" component={RegistrationView} />
-                    <PrivateRoute user={user} path="/profile" component={ProfileView} />
+                    <PrivateRoute path="/chat/:id" user={user} component={ChatView} />
                     <PrivateRoute
+                        path="/profile"
                         user={user}
-                        path="/chat/:id"
-                        component={ChatView}
+                        component={ProfileView}
                         componentProps={{ user }}
                     />
-                    <Redirect from="/" to="/profile" />
+                    <Redirect exact from="/" to="/profile" />
                 </Switch>
             </>
         );

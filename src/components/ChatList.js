@@ -5,24 +5,18 @@ import Chat from './Chat';
 class ChatList extends React.Component {
     render() {
         return (
-            <>
-                {this.props.list.length ? (
-                    <ul>
-                        {this.props.list.map((chat) => (
-                            <Chat
-                                userId={this.props.userId}
-                                chat={chat}
-                                goHandler={this.props.goHandler}
-                                joinHandler={this.props.joinHandler}
-                                deleteHandler={this.props.deleteHandler}
-                                key={chat.id}
-                            />
-                        ))}
-                    </ul>
-                ) : (
-                    <span>There are no chats yet :с</span>
-                )}
-            </>
+            <ul className="chat-list">
+                {this.props.list.map((chat) => (
+                    <Chat
+                        userId={this.props.userId}
+                        chat={chat}
+                        goHandler={this.props.goHandler}
+                        joinHandler={this.props.joinHandler}
+                        deleteHandler={this.props.deleteHandler}
+                        key={chat.id}
+                    />
+                ))}
+            </ul>
         );
     }
 }

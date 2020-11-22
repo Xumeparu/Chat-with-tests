@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class MessageForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             content: ''
         };
@@ -28,10 +28,11 @@ class MessageForm extends React.Component {
         const { content } = this.state;
 
         return (
-            <form onSubmit={(event) => this.handleSend(event)}>
+            <form className="message-form" onSubmit={(event) => this.handleSend(event)}>
                 <input
                     value={content}
                     type="text"
+                    name="content"
                     className="message"
                     placeholder="Enter your message"
                     onChange={(e) => this.setState({ content: e.target.value })}

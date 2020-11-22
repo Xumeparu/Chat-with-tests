@@ -6,7 +6,7 @@ class Message extends React.Component {
         const { nickname, content } = this.props;
         return (
             <li>
-                <b>{nickname}:</b>
+                <b>{nickname}: </b>
                 {content}
             </li>
         );

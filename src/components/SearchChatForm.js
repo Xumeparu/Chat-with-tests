@@ -6,17 +6,17 @@ class SearchChatForm extends React.Component {
         super(props);
         this.state = {
             title: '',
-            error: ''
+            errorMessage: ''
         };
     }
 
     validate() {
         this.setState({
-            error: ''
+            errorMessage: ''
         });
         if (this.state.title.length === 0) {
             this.setState({
-                error: 'Введите название чата'
+                errorMessage: 'Enter the title of the chat, please'
             });
             return false;
         }
@@ -25,7 +25,6 @@ class SearchChatForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
         if (this.validate()) {
             this.props.handleSubmit({ title: this.state.title });
             this.setState({ title: '' });
@@ -33,13 +32,15 @@ class SearchChatForm extends React.Component {
     }
 
     render() {
-        const { title, error } = this.state;
+        const { title, errorMessage } = this.state;
 
         return (
             <>
                 <h4>Search chat</h4>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <div>{error && <span style={{ color: '#9d2043' }}>{error}</span>}</div>
+                    <div>
+                        {errorMessage && <span style={{ color: '#9d2043' }}>{errorMessage}</span>}
+                    </div>
                     <div>
                         <label>
                             Название чата:
