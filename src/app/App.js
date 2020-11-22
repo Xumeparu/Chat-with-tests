@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
-import LoginView from './views/LoginView';
-import RegistrationView from './views/RegistrationView';
-import ChatView from './views/ChatView';
-import ProfileView from './views/ProfileView';
-import apiServices from './apiServices';
+import LoginView from '../views/LoginView';
+import RegistrationView from '../views/RegistrationView';
+import ChatView from '../views/ChatView';
+import ProfileView from '../views/ProfileView';
+import apiServices from '../apiServices';
 import PropTypes from 'prop-types';
+import styles from "./style.module.css";
 
 class PrivateRoute extends React.Component {
     render() {
@@ -69,7 +70,7 @@ class App extends React.Component {
             <>
                 {user ? (
                     <>
-                        <div className="links">
+                        <div className={styles.links}>
                             <Link to="/profile">Profile {user.nickname}</Link>&nbsp;
                         </div>
                         <div>
@@ -78,7 +79,7 @@ class App extends React.Component {
                     </>
                 ) : (
                     <>
-                        <div className="links">
+                        <div className={styles.links}>
                             <Link to="/auth">Authentication</Link>&nbsp;
                             <Link to="/registration">Registration</Link>&nbsp;
                         </div>

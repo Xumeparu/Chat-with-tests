@@ -1,0 +1,10 @@
+.links {
+    text-align: center;
+    display: inline-block;
+}
+
+A:link, A:visited {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 24pt;
+}

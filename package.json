@@ -2,7 +2,7 @@
   "name": "html",
   "version": "1.0.0",
   "description": "ВКИ НГУ. Предмет \"Проектирование и разработка интерфейсов пользователя\", Д.А.Вайнер. Чат с тестами",
-  "main": "src/App.js",
+  "main": "src/app/App.js",
   "scripts": {
     "test": "jest",
     "start": "node server.js",

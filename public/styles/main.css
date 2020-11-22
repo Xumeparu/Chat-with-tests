@@ -79,19 +79,8 @@ form {
 	outline: none;
 }
 
-.nick:hover, .message:hover, .button:hover, nick-pass:hover{
+.nick:hover, .message:hover, .button:hover, .nick-pass:hover{
 	outline-color: white;
-}
-
-.links {
-	margin-left: 26%;
-	display: inline-block;
-}
-
-A:link, A:visited {
-	text-decoration: none;
-	color: #ffffff;
-	font-size: 24pt;
 }
 
 #container {
