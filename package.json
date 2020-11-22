@@ -15,7 +15,8 @@
     "build-storybook": "build-storybook --no-dll",
     "loki:test": "npm run build-storybook && npx loki test --reactUri file:./storybook-static",
     "loki:update": "npm run build-storybook && npx loki update --reactUri file:./storybook-static",
-    "loki:approve": "npx loki approve"
+    "loki:approve": "npx loki approve",
+    "nightwatch": "nightwatch"
   },
   "author": "",
   "license": "ISC",
@@ -36,6 +37,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.5.2",
     "babel-loader": "^8.1.0",
+    "chromedriver": "^87.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.2.1",
     "core-js": "^3.7.0",
@@ -63,6 +65,7 @@
     "jest": "^26.5.3",
     "lint-staged": "^10.5.0",
     "loki": "^0.25.1",
+    "nightwatch": "^1.5.1",
     "prettier": "^2.1.2",
     "react-is": "^17.0.1",
     "react-router-dom": "^5.2.0",

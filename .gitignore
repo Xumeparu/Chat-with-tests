@@ -4,3 +4,5 @@ coverage/
 node_modules/
 .loki/
 storybook-static/
+chromedriver.log
+tests_output/

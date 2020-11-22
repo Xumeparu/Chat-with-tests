@@ -22,7 +22,7 @@ export default class RegistrationView extends React.Component {
         return apiServices.user
             .create(values)
             .then(() => {
-                this.setState({ successMessage: 'Success! ' });
+                this.setState({ successMessage: 'Success!' });
                 setTimeout(() => this.props.history.push('/login'), 2000);
             })
             .catch((error) =>
@@ -32,7 +32,7 @@ export default class RegistrationView extends React.Component {
 
     render() {
         return (
-            <>
+            <div className="registration-view">
                 <h1>Registration</h1>
                 <div className={styles.successMessage}>{this.state.successMessage}</div>
                 <div className={styles.mainError}>{this.state.errorMessage}</div>
@@ -106,7 +106,7 @@ export default class RegistrationView extends React.Component {
                         </form>
                     )}
                 </Formik>
-            </>
+            </div>
         );
     }
 }
