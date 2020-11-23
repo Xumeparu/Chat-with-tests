@@ -6,7 +6,7 @@ import ChatView from '../views/ChatView';
 import ProfileView from '../views/ProfileView';
 import apiServices from '../apiServices';
 import PropTypes from 'prop-types';
-import styles from "./style.module.css";
+import styles from './style.module.css';
 
 class PrivateRoute extends React.Component {
     render() {
@@ -36,7 +36,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             user: null,
-            initDone: true
+            initDone: false
         };
         this.updateAuthState = this.updateAuthState.bind(this);
     }
@@ -80,7 +80,7 @@ class App extends React.Component {
                 ) : (
                     <>
                         <div className={styles.links}>
-                            <Link to="/auth">Authentication</Link>&nbsp;
+                            <Link to="/login">Authentication</Link>&nbsp;
                             <Link to="/registration">Registration</Link>&nbsp;
                         </div>
                     </>
