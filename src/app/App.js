@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
-import LoginView from '../views/LoginView';
-import RegistrationView from '../views/RegistrationView';
-import ChatView from '../views/ChatView';
-import ProfileView from '../views/ProfileView';
+import LoginView from '../views/LoginView/LoginView';
+import RegistrationView from '../views/RegistrationView/RegistrationView';
+import ChatView from '../views/ChatView/ChatView';
+import ProfileView from '../views/ProfileView/ProfileView';
 import apiServices from '../apiServices';
 import PropTypes from 'prop-types';
-import styles from './style.module.css';
+import styles from './styles.module.css';
 
 class PrivateRoute extends React.Component {
     render() {
@@ -70,11 +70,16 @@ class App extends React.Component {
             <>
                 {user ? (
                     <>
-                        <div className={styles.links}>
-                            <Link to="/profile">Profile {user.nickname}</Link>&nbsp;
-                        </div>
                         <div>
-                            <button onClick={() => this.logoutHandler()}>Logout</button>
+                            <div className={styles.links}>
+                                <Link to="/profile">Profile {user.nickname}</Link>
+                            </div>
+                            <button
+                                className={styles.logoutButton}
+                                onClick={() => this.logoutHandler()}
+                            >
+                                Logout
+                            </button>
                         </div>
                     </>
                 ) : (

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import apiServices from '../apiServices';
-import styles from './LoginView.module.css';
+import apiServices from '../../apiServices';
+import styles from './styles.module.css';
 
 export default class LoginView extends React.Component {
     constructor(props) {
@@ -43,11 +43,12 @@ export default class LoginView extends React.Component {
 
     render() {
         const { successMessage, errorMessage, nickname, password } = this.state;
+
         return (
             <div className="login-view">
                 <h1>Authentication</h1>
-                <div className={styles.mainError}>{errorMessage}</div>
                 {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
+                <div className={styles.errorMessage}>{errorMessage}</div>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <div>
                         <label>
@@ -55,7 +56,7 @@ export default class LoginView extends React.Component {
                             <input
                                 type="text"
                                 name="nickname"
-                                className="nick-pass"
+                                className={styles.inputNickAndPass}
                                 value={nickname}
                                 onChange={(e) => this.setState({ nickname: e.target.value })}
                             />
@@ -67,13 +68,13 @@ export default class LoginView extends React.Component {
                             <input
                                 type="password"
                                 name="password"
-                                className="nick-pass"
+                                className={styles.inputNickAndPass}
                                 value={password}
                                 onChange={(e) => this.setState({ password: e.target.value })}
                             />
                         </label>
                     </div>
-                    <button type="submit" className="button">
+                    <button type="submit" className={styles.button}>
                         Go!
                     </button>
                 </form>

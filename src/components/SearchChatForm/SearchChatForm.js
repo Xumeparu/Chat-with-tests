@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 class SearchChatForm extends React.Component {
     constructor(props) {
@@ -36,21 +37,22 @@ class SearchChatForm extends React.Component {
 
         return (
             <>
-                <h4>Search chat</h4>
+                <h3>Search chat</h3>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <div>
-                        {errorMessage && <span style={{ color: '#9d2043' }}>{errorMessage}</span>}
-                    </div>
-                    <div>
+                    {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+                    <div className={styles.searchChat}>
                         <label>
-                            Название чата:
+                            Chat title:&nbsp;
                             <input
                                 value={title}
+                                className={styles.inputChatTitle}
                                 onChange={(event) => this.setState({ title: event.target.value })}
                             />
                         </label>
+                        <button type="submit" className={styles.button}>
+                            Search
+                        </button>
                     </div>
-                    <button type="submit">Search</button>
                 </form>
             </>
         );

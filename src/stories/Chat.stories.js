@@ -1,5 +1,5 @@
 import React from 'react';
-import Chat from '../components/Chat';
+import Chat from '../components/Chat/Chat';
 import { action } from '@storybook/addon-actions';
 
 export default {

@@ -1,0 +1,47 @@
+.errorMessage {
+    min-height: 0;
+    color: #9d2043;
+    font-size: 24pt;
+    text-shadow: 1px 1px 1px #17162d;
+    text-align: center;
+}
+
+.validationError {
+    min-height: 0;
+    color: #9d2043;
+    font-size: 24pt;
+    text-shadow: 1px 1px 1px #17162d;
+}
+
+.successMessage {
+    min-height: 0;
+    color: #17864d;
+    font-size: 24pt;
+    text-shadow: 1px 1px 1px #17162d;
+    text-align: center;
+}
+
+label {
+    font-size: 24pt;
+}
+
+.inputNickAndPass {
+    color: #17162d;
+    border-style: none;
+    border-radius: 4px;
+    height: 30px;
+    width: 400px;
+}
+
+.button {
+    color: #17162d;
+    background-color: #ffffff;
+    border-style: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    width: 200px;
+}
+
+.button:hover, .button:active {
+    outline-color: #ffffff;
+}

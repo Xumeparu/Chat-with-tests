@@ -1,8 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
-import apiServices from '../apiServices';
-import styles from './RegistrationView.module.css';
+import apiServices from '../../apiServices';
+import styles from './styles.module.css';
 
 export default class RegistrationView extends React.Component {
     constructor(props) {
@@ -31,11 +31,13 @@ export default class RegistrationView extends React.Component {
     }
 
     render() {
+        const { successMessage, errorMessage } = this.state;
+
         return (
             <div className="registration-view">
                 <h1>Registration</h1>
-                <div className={styles.successMessage}>{this.state.successMessage}</div>
-                <div className={styles.mainError}>{this.state.errorMessage}</div>
+                {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
+                <div className={styles.errorMessage}>{errorMessage}</div>
                 <Formik
                     initialValues={{
                         nickname: '',
@@ -69,7 +71,7 @@ export default class RegistrationView extends React.Component {
                     }) => (
                         <form onSubmit={handleSubmit}>
                             {errors.nickname && touched.nickname && (
-                                <div className={styles.errorMessage}>{errors.nickname}</div>
+                                <div className={styles.validationError}>{errors.nickname}</div>
                             )}
                             <div>
                                 <label>
@@ -77,7 +79,7 @@ export default class RegistrationView extends React.Component {
                                     <input
                                         type="text"
                                         name="nickname"
-                                        className="nick-pass"
+                                        className={styles.inputNickAndPass}
                                         value={values.nickname}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -85,7 +87,7 @@ export default class RegistrationView extends React.Component {
                                 </label>
                             </div>
                             {errors.password && touched.password && (
-                                <div className={styles.errorMessage}>{errors.password}</div>
+                                <div className={styles.validationError}>{errors.password}</div>
                             )}
                             <div>
                                 <label>
@@ -93,14 +95,14 @@ export default class RegistrationView extends React.Component {
                                     <input
                                         type="password"
                                         name="password"
-                                        className="nick-pass"
+                                        className={styles.inputNickAndPass}
                                         value={values.password}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
                                 </label>
                             </div>
-                            <button type="submit" className="button" disabled={isSubmitting}>
+                            <button type="submit" className={styles.button} disabled={isSubmitting}>
                                 Create user
                             </button>
                         </form>

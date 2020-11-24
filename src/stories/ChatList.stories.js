@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatList from '../components/ChatList';
+import ChatList from '../components/ChatList/ChatList';
 import { action } from '@storybook/addon-actions';
 
 export default {

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 class ChatForm extends React.Component {
     constructor(props) {
@@ -38,20 +39,21 @@ class ChatForm extends React.Component {
             <>
                 <h3>Create and edit chat</h3>
                 <form className="chat-form" onSubmit={(e) => this.handleSubmit(e)}>
-                    <div>
-                        {errorMessage && <span style={{ color: '#9d2043' }}>{errorMessage}</span>}
-                    </div>
-                    <div>
+                    {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
+                    <div className={styles.createAndEditChat}>
                         <label>
-                            Chat title:
+                            Chat title:&nbsp;
                             <input
                                 value={title}
                                 name="chat-title"
+                                className={styles.inputChatTitle}
                                 onChange={(event) => this.setState({ title: event.target.value })}
                             />
                         </label>
+                        <button type="submit" className={styles.button}>
+                            Save
+                        </button>
                     </div>
-                    <button type="submit">Save</button>
                 </form>
             </>
         );

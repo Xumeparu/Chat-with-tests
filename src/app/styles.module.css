@@ -1,0 +1,26 @@
+.links {
+    display: inline-block;
+    text-align: center;
+    margin-top: 2%;
+}
+
+A:link, A:visited {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 30pt;
+}
+
+.logoutButton {
+    color: #17162d;
+    background-color: #ffffff;
+    border-style: none;
+    border-radius: 4px;
+    width: 200px;
+    float: right;
+    margin-top: 2%;
+    margin-right: 2%;
+}
+
+.logoutButton:active, .logoutButton:hover{
+    outline-color: white;
+}

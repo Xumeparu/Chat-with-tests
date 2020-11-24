@@ -1,9 +1,10 @@
 import React from 'react';
-import apiServices from '../apiServices';
-import ChatForm from '../components/ChatForm';
-import ChatList from '../components/ChatList';
-import SearchChatForm from '../components/SearchChatForm';
+import apiServices from '../../apiServices';
+import ChatForm from '../../components/ChatForm/ChatForm';
+import ChatList from '../../components/ChatList/ChatList';
+import SearchChatForm from '../../components/SearchChatForm/SearchChatForm';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 export default class ProfileView extends React.Component {
     constructor(props) {
@@ -55,11 +56,14 @@ export default class ProfileView extends React.Component {
     render() {
         const { chats, foundChats } = this.state;
         const { user } = this.props;
+
         return (
             <>
                 <h1>Profile</h1>
-                <div className="profile">Nickname: {user.nickname}</div>
-                <div className="profile">Created: {new Date(user.createdAt).toLocaleString()}</div>
+                <div className={styles.info}>Nickname: {user.nickname}</div>
+                <div className={styles.info}>
+                    Created: {new Date(user.createdAt).toLocaleString()}
+                </div>
                 <h3>My chats</h3>
                 <ChatList
                     userId={user.id}

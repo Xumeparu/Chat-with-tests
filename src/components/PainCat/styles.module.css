@@ -1,4 +1,10 @@
 .cat {
-    width: 20px;
-    height: 10px;
+    position: absolute;
+    margin-top: 22%;
+    margin-left: 39%;
+}
+
+.catPain {
+    width: 70px;
+    height: 70px;
 }

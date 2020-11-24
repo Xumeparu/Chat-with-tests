@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 class MessageForm extends React.Component {
     constructor(props) {
@@ -29,16 +30,15 @@ class MessageForm extends React.Component {
 
         return (
             <form className="message-form" onSubmit={(event) => this.handleSend(event)}>
-                <input
+                <textarea
                     value={content}
-                    type="text"
                     name="content"
-                    className="message"
+                    className={styles.content}
                     placeholder="Enter your message"
                     onChange={(e) => this.setState({ content: e.target.value })}
                 />
                 <br />
-                <button type="submit" className="button">
+                <button type="submit" className={styles.button}>
                     Send
                 </button>
             </form>

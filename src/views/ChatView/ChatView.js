@@ -1,8 +1,8 @@
 import React from 'react';
-import MessageForm from '../components/MessageForm';
-import MessagesList from '../components/MessagesList';
-import Index from '../components/PainCat';
-import apiServices from '../apiServices';
+import MessageForm from '../../components/MessageForm/MessageForm';
+import MessagesList from '../../components/MessageList/MessagesList';
+import Index from '../../components/PainCat';
+import apiServices from '../../apiServices';
 import PropTypes from 'prop-types';
 
 class ChatView extends React.Component {

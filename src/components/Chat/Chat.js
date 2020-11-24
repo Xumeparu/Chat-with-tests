@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 class Chat extends React.Component {
     isOwner() {
@@ -15,9 +16,12 @@ class Chat extends React.Component {
             return (
                 <>
                     <a href="/" onClick={(e) => this.innerClickHandler(e)}>
-                        {this.props.chat.title}
+                        <span className={styles.chatTitle}>{this.props.chat.title}</span>
                     </a>
-                    <button onClick={() => this.props.deleteHandler(this.props.chat.id)}>
+                    <button
+                        className={styles.button}
+                        onClick={() => this.props.deleteHandler(this.props.chat.id)}
+                    >
                         Delete
                     </button>
                 </>
@@ -27,7 +31,7 @@ class Chat extends React.Component {
             return (
                 <>
                     <a href="/" onClick={(e) => this.innerClickHandler(e)}>
-                        {this.props.chat.title}
+                        <span className={styles.chatTitle}>{this.props.chat.title}</span>
                     </a>
                     {/* TODO: exit button */}
                 </>
@@ -35,8 +39,13 @@ class Chat extends React.Component {
         }
         return (
             <>
-                <span>{this.props.chat.title}</span>
-                <button onClick={() => this.props.joinHandler(this.props.chat.id)}>Join</button>
+                <span className={styles.chatTitle}>{this.props.chat.title}</span>
+                <button
+                    className={styles.button}
+                    onClick={() => this.props.joinHandler(this.props.chat.id)}
+                >
+                    Join
+                </button>
             </>
         );
     }

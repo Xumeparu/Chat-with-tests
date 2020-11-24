@@ -1,12 +1,13 @@
 import React from 'react';
-import Message from './Message';
+import Message from '../Message/Message';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 class MessagesList extends React.Component {
     render() {
         const { messages } = this.props;
         return (
-            <div id="messages">
+            <div className={styles.messagesList}>
                 <ul className="message-list">
                     {messages.map((message) => (
                         <Message

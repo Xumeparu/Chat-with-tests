@@ -1,0 +1,29 @@
+.messagesList {
+    background-color: rgba(255,255,255,0.7);
+    border-style: none;
+    border-radius: 4px;
+
+    color: #17162d;
+    margin-top: 10px;
+    margin-left: 30%;
+    width: 39%;
+
+    flex-grow: 1;
+
+    overflow: auto;
+
+    min-height: 0;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ffffff;
+}

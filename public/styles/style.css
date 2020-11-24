@@ -1,0 +1,57 @@
+* {
+	font-family: "Diary of an 8-bit mage", serif;
+	color: #ffffff;
+	font-size: 20pt;
+	text-shadow: 1px 1px 1px #17162d;
+	margin: 0;
+	padding: 10px;
+}
+
+h1 {
+	text-align: center;
+	color: #ffffff;
+	font-size: 50pt;
+	text-shadow: 1px 1px 1px #17162d;
+	margin-top: 20px;
+}
+
+body {
+	background-image: url("../images/back.gif");
+	background-size: cover;
+	background-attachment: fixed;
+
+	scrollbar-width: 0;
+}
+
+form {
+	text-align: center;
+}
+
+#container {
+	background-color: rgba(0, 0, 0, 0.5);
+	background-size: cover;
+	background-attachment: fixed;
+
+	position: absolute;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
+#section {
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+
+	min-height: 0;
+}
+
+::placeholder {
+	color: #17162d;
+	opacity: 20%;
+}
