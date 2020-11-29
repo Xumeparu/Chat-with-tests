@@ -13,7 +13,7 @@ export default {
     },
     user: {
         create: ({ nickname, password }) => axiosInstance.post('/user', { nickname, password }),
-        getProfile: () => axiosInstance.get('/user'),
+        getCurrent: () => axiosInstance.get('/user'),
         getById: (id) => axiosInstance.get(`/user/${id}`)
     },
     chat: {

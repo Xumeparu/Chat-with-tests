@@ -47,7 +47,7 @@ class App extends React.Component {
 
     updateAuthState() {
         return apiServices.user
-            .getProfile()
+            .getCurrent()
             .then((response) => response.data)
             .then((user) => this.setState({ user, initDone: true }))
             .catch(() => this.setState({ user: null, initDone: true }));
@@ -94,7 +94,7 @@ class App extends React.Component {
                     <Route
                         path="/login"
                         render={(routeProps) => (
-                            <LoginView updateAuthState={this.updateAuthState} {...routeProps} />
+                            <LoginView updateAuthHandler={this.updateAuthState} {...routeProps} />
                         )}
                     />
                     <Route path="/registration" component={RegistrationView} />

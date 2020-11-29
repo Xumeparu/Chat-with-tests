@@ -25,7 +25,7 @@ export default class LoginView extends React.Component {
                 password: this.state.password
             })
             .then(() => {
-                this.setState({ successMessage: 'User registered successfully' });
+                this.setState({ successMessage: 'Welcome' });
                 setTimeout(() => this.redirectAfterLogin(), 2000);
             })
             .catch((error) =>
@@ -35,10 +35,10 @@ export default class LoginView extends React.Component {
     }
 
     redirectAfterLogin() {
-        const redirectUrl = this.props.location?.state.from.pathname
+        const redirectUrl = this.props.location.state
             ? this.props.location.state.from.pathname
             : '/profile';
-        this.props.updateAuthState().then(() => this.props.history.push(redirectUrl));
+        this.props.updateAuthHandler().then(() => this.props.history.push(redirectUrl));
     }
 
     render() {
@@ -47,7 +47,11 @@ export default class LoginView extends React.Component {
         return (
             <div className="login-view">
                 <h1>Authentication</h1>
-                {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
+                {successMessage && (
+                    <div className="success-message">
+                        <div className={styles.successMessage}>{successMessage}</div>
+                    </div>
+                )}
                 <div className={styles.errorMessage}>{errorMessage}</div>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <div>
@@ -86,5 +90,6 @@ export default class LoginView extends React.Component {
 LoginView.propTypes = {
     history: PropTypes.object,
     updateAuthState: PropTypes.func,
+    updateAuthHandler: PropTypes.func,
     location: PropTypes.any
 };

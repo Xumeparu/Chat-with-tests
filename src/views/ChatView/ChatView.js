@@ -64,12 +64,12 @@ class ChatView extends React.Component {
         const { messages } = this.state;
 
         return (
-            <>
+            <div className="chat-view">
                 <h1>Chat</h1>
                 <Index />
                 <MessageForm sendMessage={(data) => this.sendMessage(data)} />
                 <MessagesList messages={messages} />
-            </>
+            </div>
         );
     }
 }

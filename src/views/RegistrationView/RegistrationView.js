@@ -22,7 +22,7 @@ export default class RegistrationView extends React.Component {
         return apiServices.user
             .create(values)
             .then(() => {
-                this.setState({ successMessage: 'Success!' });
+                this.setState({ successMessage: 'User registered successfully' });
                 setTimeout(() => this.props.history.push('/login'), 2000);
             })
             .catch((error) =>
@@ -36,7 +36,11 @@ export default class RegistrationView extends React.Component {
         return (
             <div className="registration-view">
                 <h1>Registration</h1>
-                {successMessage && <div className={styles.successMessage}>{successMessage}</div>}
+                {successMessage && (
+                    <div className="success-message">
+                        <div className={styles.successMessage}>{successMessage}</div>
+                    </div>
+                )}
                 <div className={styles.errorMessage}>{errorMessage}</div>
                 <Formik
                     initialValues={{
