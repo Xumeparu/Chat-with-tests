@@ -17,7 +17,7 @@ export default {
         getById: (id) => axiosInstance.get(`/user/${id}`)
     },
     chat: {
-        create: ({ title }) => axiosInstance.post('/chat', { title }),
+        create: (params) => axiosInstance.post('/chat', params),
         getMyChats: (userId) => axiosInstance.get(`/chat/?participantId=${userId}`),
         search: (title) => axiosInstance.get(`/chat/?title=${title}`),
         getInfo: (id) => axiosInstance.get(`/chat/${id}`),

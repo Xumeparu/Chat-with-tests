@@ -7,6 +7,7 @@ class ChatForm extends React.Component {
         super(props);
         this.state = {
             title: '',
+            isPrivate: false,
             errorMessage: ''
         };
     }
@@ -27,13 +28,16 @@ class ChatForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.validate()) {
-            this.props.handleSubmit({ title: this.state.title });
-            this.setState({ title: '' });
+            this.props.handleSubmit({
+                title: this.state.title,
+                isPrivate: this.state.isPrivate
+            });
+            this.setState({ title: '', isPrivate: false });
         }
     }
 
     render() {
-        const { title, errorMessage } = this.state;
+        const { title, isPrivate, errorMessage } = this.state;
 
         return (
             <>
@@ -44,6 +48,7 @@ class ChatForm extends React.Component {
                         <label>
                             Chat title:&nbsp;
                             <input
+                                type="text"
                                 value={title}
                                 name="chat-title"
                                 className={styles.inputChatTitle}
@@ -53,6 +58,20 @@ class ChatForm extends React.Component {
                         <button type="submit" className={styles.button}>
                             Save
                         </button>
+                    </div>
+                    <div className={styles.createAndEditChat}>
+                        <label>
+                            Is private:&nbsp;
+                            <input
+                                type="checkbox"
+                                checked={isPrivate}
+                                name="is-private"
+                                className={styles.inputIsPrivate}
+                                onChange={(event) =>
+                                    this.setState({ isPrivate: event.target.checked })
+                                }
+                            />
+                        </label>
                     </div>
                 </form>
             </>

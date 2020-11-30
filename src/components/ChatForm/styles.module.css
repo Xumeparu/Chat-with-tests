@@ -7,13 +7,13 @@
     margin-left: 10%;
 }
 
+label {
+    font-size: 24pt;
+}
+
 .createAndEditChat {
     float: left;
     margin-left: 4%;
-}
-
-label {
-    font-size: 24pt;
 }
 
 .inputChatTitle {
@@ -22,6 +22,14 @@ label {
     border-radius: 4px;
     height: 30px;
     width: 400px;
+}
+
+.inputIsPrivate {
+    color: #17162d;
+    border-style: none;
+    border-radius: 4px;
+    height: 30px;
+    width: 30px;
 }
 
 .button {
