@@ -19,19 +19,17 @@ body {
 	background-image: url("../images/back.gif");
 	background-size: cover;
 	background-attachment: fixed;
-
-	scrollbar-width: 0;
 }
 
 form {
 	text-align: center;
 }
 
-#container {
-	background-color: rgba(0, 0, 0, 0.5);
-	background-size: cover;
-	background-attachment: fixed;
+.chat-view {
+	height: 80%;
+}
 
+#container {
 	position: absolute;
 	top:0;
 	left: 0;

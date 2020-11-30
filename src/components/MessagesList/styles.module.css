@@ -4,13 +4,13 @@
     border-radius: 4px;
 
     color: #17162d;
+
     margin-top: 10px;
     margin-left: 30%;
+    height: 50%;
     width: 39%;
 
-    flex-grow: 1;
-
-    overflow: auto;
+    overflow-y: scroll;
 
     min-height: 0;
 }

@@ -1,7 +1,8 @@
-const paths = require('./paths.js');
+const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const paths = require('./paths.js');
 
 module.exports = {
     //mode: 'development',
@@ -54,5 +55,10 @@ module.exports = {
                 ],
             },
         ]
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './src')
+        }
     }
 };

@@ -1,9 +1,10 @@
 import React from 'react';
 import MessageForm from '../../components/MessageForm/MessageForm';
-import MessagesList from '../../components/MessageList/MessagesList';
+import MessagesList from '../../components/MessagesList/MessagesList';
 import Index from '../../components/PainCat';
 import apiServices from '../../apiServices';
 import PropTypes from 'prop-types';
+import styles from './styles.module.css';
 
 class ChatView extends React.Component {
     constructor() {
@@ -65,10 +66,12 @@ class ChatView extends React.Component {
 
         return (
             <div className="chat-view">
-                <h1>Chat</h1>
-                <Index />
-                <MessageForm sendMessage={(data) => this.sendMessage(data)} />
-                <MessagesList messages={messages} />
+                <div className={styles.chatView}>
+                    <h1>Chat</h1>
+                    <Index />
+                    <MessageForm sendMessage={(data) => this.sendMessage(data)} />
+                    <MessagesList messages={messages} />
+                </div>
             </div>
         );
     }
