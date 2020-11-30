@@ -7,6 +7,7 @@ import ProfileView from '../views/ProfileView/ProfileView';
 import apiServices from '../apiServices';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
+import SearchChatView from '../views/SearchChatView';
 
 class PrivateRoute extends React.Component {
     render() {
@@ -73,6 +74,7 @@ class App extends React.Component {
                         <div>
                             <div className={styles.links}>
                                 <Link to="/profile">Profile {user.nickname}</Link>
+                                <Link to="/searchChats">Search chats</Link>
                             </div>
                             <button
                                 className={styles.logoutButton}
@@ -103,6 +105,12 @@ class App extends React.Component {
                         path="/profile"
                         user={user}
                         component={ProfileView}
+                        componentProps={{ user }}
+                    />
+                    <PrivateRoute
+                        path="/searchChats"
+                        user={user}
+                        component={SearchChatView}
                         componentProps={{ user }}
                     />
                     <Redirect exact from="/" to="/profile" />

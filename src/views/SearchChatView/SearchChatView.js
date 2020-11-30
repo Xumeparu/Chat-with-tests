@@ -1,31 +1,32 @@
 import React from 'react';
-import apiServices from '../../apiServices';
-import ChatForm from '../../components/ChatForm/ChatForm';
+import SearchChatForm from '../../components/SearchChatForm';
 import ChatList from '../../components/ChatList/ChatList';
+import apiServices from '../../apiServices';
 import PropTypes from 'prop-types';
-import styles from './styles.module.css';
+//import styles from './styles.module.css';
 
-export default class ProfileView extends React.Component {
+export default class SearchChatView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            chats: []
+            title: '',
+            foundChats: []
         };
-    }
-
-    componentDidMount() {
-        this.getChatList();
-    }
-
-    handleChatCreate(params) {
-        apiServices.chat.create(params).then(() => this.getChatList());
     }
 
     getChatList() {
         apiServices.chat
-            .getMyChats(this.props.user.id)
+            .search(this.state.title)
             .then((response) => response.data)
-            .then((chats) => this.setState({ chats }));
+            .then((foundChats) => this.setState({ foundChats }));
+    }
+
+    handleChatSearch({ title }) {
+        this.setState({ title });
+        apiServices.chat
+            .search(title)
+            .then((response) => response.data)
+            .then((foundChats) => this.setState({ foundChats }));
     }
 
     goHandler(id) {
@@ -45,31 +46,26 @@ export default class ProfileView extends React.Component {
     }
 
     render() {
-        const { chats } = this.state;
+        const { foundChats } = this.state;
         const { user } = this.props;
 
         return (
             <>
-                <h1>Profile</h1>
-                <div className={styles.info}>Nickname: {user.nickname}</div>
-                <div className={styles.info}>
-                    Created: {new Date(user.createdAt).toLocaleString()}
-                </div>
-                <h3>My chats</h3>
+                <h3>Search chat</h3>
+                <SearchChatForm handleSubmit={(data) => this.handleChatSearch(data)} />
                 <ChatList
                     userId={user.id}
-                    list={chats}
+                    list={foundChats}
                     goHandler={(id) => this.goHandler(id)}
                     joinHandler={(id) => this.joinHandler(id)}
                     deleteHandler={(id) => this.deleteHandler(id)}
                 />
-                <ChatForm handleSubmit={(data) => this.handleChatCreate(data)} />
             </>
         );
     }
 }
 
-ProfileView.propTypes = {
+SearchChatView.propTypes = {
     history: PropTypes.object,
     user: PropTypes.object
 };

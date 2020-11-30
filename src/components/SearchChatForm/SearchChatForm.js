@@ -37,7 +37,6 @@ class SearchChatForm extends React.Component {
 
         return (
             <>
-                <h3>Search chat</h3>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
                     <div className={styles.searchChat}>
