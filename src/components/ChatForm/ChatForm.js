@@ -58,8 +58,6 @@ class ChatForm extends React.Component {
                         <button type="submit" className={styles.button}>
                             Save
                         </button>
-                    </div>
-                    <div className={styles.createAndEditChat}>
                         <label>
                             Is private:&nbsp;
                             <input

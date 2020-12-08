@@ -41,6 +41,15 @@ label {
     width: 200px;
 }
 
-.button:hover, .button:active {
+.buttonStartDialogue {
+    color: #17162d;
+    background-color: #ffffff;
+    border-style: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    width: 300px;
+}
+
+.button:hover, .button:active, .buttonStartDialogue:hover, .buttonStartDialogue:active {
     outline-color: #ffffff;
 }

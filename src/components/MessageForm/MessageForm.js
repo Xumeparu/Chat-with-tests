@@ -30,7 +30,7 @@ class MessageForm extends React.Component {
 
         return (
             <form className="message-form" onSubmit={(event) => this.handleSend(event)}>
-                <textarea
+                <input
                     value={content}
                     name="content"
                     className={styles.content}

@@ -51,7 +51,7 @@ export default class SearchChatView extends React.Component {
 
         return (
             <>
-                <h3>Search chat</h3>
+                <h1>Search chat</h1>
                 <SearchChatForm handleSubmit={(data) => this.handleChatSearch(data)} />
                 <ChatList
                     userId={user.id}

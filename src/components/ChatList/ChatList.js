@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Chat from '../Chat/Chat';
+import styles from './styles.module.css';
 
 class ChatList extends React.Component {
     render() {
+        if (!this.props.list.length) {
+            return <span className={styles.spanEmptyList}>Chat list is empty</span>;
+        }
         return (
             <ul className="chat-list">
                 {this.props.list.map((chat) => (

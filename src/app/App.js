@@ -75,8 +75,8 @@ class App extends React.Component {
                         <div>
                             <div className={styles.links}>
                                 <Link to="/profile">Profile {user.nickname}</Link>
-                                <Link to="/searchChats">Search chats</Link>
-                                <Link to="/userSearch">Users search</Link>
+                                <Link to="/searchChats">Search chat</Link>
+                                <Link to="/userSearch">User search</Link>
                             </div>
                             <button
                                 className={styles.logoutButton}

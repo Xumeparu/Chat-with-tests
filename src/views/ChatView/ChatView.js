@@ -69,8 +69,8 @@ class ChatView extends React.Component {
                 <div className={styles.chatView}>
                     <h1>Chat</h1>
                     <Index />
-                    <MessageForm sendMessage={(data) => this.sendMessage(data)} />
                     <MessagesList messages={messages} />
+                    <MessageForm sendMessage={(data) => this.sendMessage(data)} />
                 </div>
             </div>
         );
