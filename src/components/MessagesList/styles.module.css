@@ -1,14 +1,14 @@
 .messagesList {
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255,255,255,0.5);
     border-style: none;
     border-radius: 4px;
 
     color: #17162d;
 
     margin-top: 10px;
-    margin-left: 30%;
+    margin-left: 20%;
     height: 55%;
-    width: 39%;
+    width: 60%;
 
     overflow-y: scroll;
 
