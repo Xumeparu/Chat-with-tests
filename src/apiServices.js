@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://shielded-anchorage-94550.herokuapp.com',
+    //baseURL: 'https://shielded-anchorage-94550.herokuapp.com',
+    baseURL: 'http://localhost:3001',
     withCredentials: true
 });
 
@@ -14,7 +15,8 @@ export default {
     user: {
         create: ({ nickname, password }) => axiosInstance.post('/user', { nickname, password }),
         getCurrent: () => axiosInstance.get('/user'),
-        getById: (id) => axiosInstance.get(`/user/${id}`)
+        getById: (id) => axiosInstance.get(`/user/${id}`),
+        find: nickname => axiosInstance.get(`/user/?nickname=${nickname}`)
     },
     chat: {
         create: (params) => axiosInstance.post('/chat', params),
