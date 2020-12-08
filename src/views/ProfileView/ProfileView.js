@@ -50,7 +50,6 @@ export default class ProfileView extends React.Component {
 
         return (
             <>
-                <h1>Profile</h1>
                 <div className={styles.info}>Nickname: {user.nickname}</div>
                 <div className={styles.info}>
                     Created: {new Date(user.createdAt).toLocaleString()}

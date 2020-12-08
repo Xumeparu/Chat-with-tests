@@ -46,7 +46,6 @@ export default class LoginView extends React.Component {
 
         return (
             <div className="login-view">
-                <h1>Authentication</h1>
                 {successMessage && (
                     <div className="success-message">
                         <div className={styles.successMessage}>{successMessage}</div>

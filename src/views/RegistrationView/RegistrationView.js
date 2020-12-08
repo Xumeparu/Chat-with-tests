@@ -35,7 +35,6 @@ export default class RegistrationView extends React.Component {
 
         return (
             <div className="registration-view">
-                <h1>Registration</h1>
                 {successMessage && (
                     <div className="success-message">
                         <div className={styles.successMessage}>{successMessage}</div>

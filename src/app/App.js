@@ -7,18 +7,19 @@ import ProfileView from '../views/ProfileView/ProfileView';
 import apiServices from '../apiServices';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
-import SearchChatView from '../views/SearchChatView';
-import UserSearchView from '../views/UserSearchView';
+import SearchChatsView from '../views/SearchChatsView';
+import UsersSearchView from '../views/UsersSearchView';
+import ViewHeader from '../views/ViewHeader/ViewHeader';
 
 class PrivateRoute extends React.Component {
     render() {
-        const { user, component: Component, componentProps, ...rest } = this.props;
+        const { user, children, ...rest } = this.props;
         return (
             <Route
                 {...rest}
                 render={(routeProps) =>
                     user ? (
-                        <Component {...componentProps} {...routeProps} />
+                        React.cloneElement(children, { ...routeProps, user })
                     ) : (
                         <Redirect
                             to={{
@@ -98,29 +99,38 @@ class App extends React.Component {
                     <Route
                         path="/login"
                         render={(routeProps) => (
-                            <LoginView updateAuthHandler={this.updateAuthState} {...routeProps} />
+                            <ViewHeader title="Authentication">
+                                <LoginView
+                                    updateAuthHandler={this.updateAuthState}
+                                    {...routeProps}
+                                />
+                            </ViewHeader>
                         )}
                     />
-                    <Route path="/registration" component={RegistrationView} />
+                    <Route
+                        path="/registration"
+                        render={(routeProps) => (
+                            <ViewHeader title="Registration">
+                                <RegistrationView {...routeProps} />
+                            </ViewHeader>
+                        )}
+                    />
                     <PrivateRoute path="/chat/:id" user={user} component={ChatView} />
-                    <PrivateRoute
-                        path="/profile"
-                        user={user}
-                        component={ProfileView}
-                        componentProps={{ user }}
-                    />
-                    <PrivateRoute
-                        path="/searchChats"
-                        user={user}
-                        component={SearchChatView}
-                        componentProps={{ user }}
-                    />
-                    <PrivateRoute
-                        path="/userSearch"
-                        user={user}
-                        component={UserSearchView}
-                        componentProps={{ user }}
-                    />
+                    <PrivateRoute path="/profile" user={user}>
+                        <ViewHeader title="Profile">
+                            <ProfileView />
+                        </ViewHeader>
+                    </PrivateRoute>
+                    <PrivateRoute path="/searchChats" user={user}>
+                        <ViewHeader title="Search chats">
+                            <SearchChatsView />
+                        </ViewHeader>
+                    </PrivateRoute>
+                    <PrivateRoute path="/userSearch" user={user}>
+                        <ViewHeader title="Users search">
+                            <UsersSearchView />
+                        </ViewHeader>
+                    </PrivateRoute>
                     <Redirect exact from="/" to="/profile" />
                 </Switch>
             </>
@@ -130,8 +140,7 @@ class App extends React.Component {
 
 PrivateRoute.propTypes = {
     user: PropTypes.object,
-    component: PropTypes.any,
-    componentProps: PropTypes.any
+    children: PropTypes.any
 };
 
 export default App;

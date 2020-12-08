@@ -3,7 +3,7 @@ import apiServices from '../../apiServices';
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 
-export default class UserSearchView extends React.Component {
+export default class UsersSearchView extends React.Component {
     constructor(props) {
         super(props);
 
@@ -66,7 +66,6 @@ export default class UserSearchView extends React.Component {
 
         return (
             <>
-                <h1>User search</h1>
                 <form className="userSearch-form" onSubmit={(e) => this.handleSubmit(e)}>
                     {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
                     <div className={styles.userSearch}>
@@ -107,7 +106,7 @@ export default class UserSearchView extends React.Component {
     }
 }
 
-UserSearchView.propTypes = {
+UsersSearchView.propTypes = {
     history: PropTypes.object,
     user: PropTypes.object
 };

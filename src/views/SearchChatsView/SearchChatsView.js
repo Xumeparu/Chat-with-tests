@@ -5,7 +5,7 @@ import apiServices from '../../apiServices';
 import PropTypes from 'prop-types';
 //import styles from './styles.module.css';
 
-export default class SearchChatView extends React.Component {
+export default class SearchChatsView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -51,7 +51,6 @@ export default class SearchChatView extends React.Component {
 
         return (
             <>
-                <h1>Search chat</h1>
                 <SearchChatForm handleSubmit={(data) => this.handleChatSearch(data)} />
                 <ChatList
                     userId={user.id}
@@ -65,7 +64,7 @@ export default class SearchChatView extends React.Component {
     }
 }
 
-SearchChatView.propTypes = {
+SearchChatsView.propTypes = {
     history: PropTypes.object,
     user: PropTypes.object
 };
