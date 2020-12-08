@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3001',
+    baseURL: 'https://shielded-anchorage-94550.herokuapp.com',
     withCredentials: true
 });
 
