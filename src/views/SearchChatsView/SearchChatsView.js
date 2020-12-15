@@ -17,7 +17,6 @@ export default class SearchChatsView extends React.Component {
     getChatList() {
         apiServices.chat
             .search(this.state.title)
-            .then((response) => response.data)
             .then((foundChats) => this.setState({ foundChats }));
     }
 
@@ -25,7 +24,6 @@ export default class SearchChatsView extends React.Component {
         this.setState({ title });
         apiServices.chat
             .search(title)
-            .then((response) => response.data)
             .then((foundChats) => this.setState({ foundChats }));
     }
 

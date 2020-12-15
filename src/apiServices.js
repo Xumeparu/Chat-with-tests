@@ -6,6 +6,9 @@ const axiosInstance = axios.create({
     withCredentials: true
 });
 
+const jsonInterceptor = [response => response.data, error => Promise.reject(error)];
+axiosInstance.interceptors.response.use(...jsonInterceptor);
+
 export default {
     auth: {
         login: ({ nickname, password }) => axiosInstance.post('/auth', { nickname, password }),

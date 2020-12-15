@@ -33,7 +33,6 @@ export default class UsersSearchView extends React.Component {
         if (this.validate()) {
             apiServices.user
                 .find(this.state.nickname)
-                .then((response) => response.data)
                 .then((foundUsers) => this.setState({ foundUsers, nickname: '' }))
                 .catch((error) =>
                     this.setState({ errorMessage: 'Error: ' + error.response.data.error })
@@ -51,7 +50,6 @@ export default class UsersSearchView extends React.Component {
                 isDialogue: true,
                 participants: [userId]
             })
-            .then((response) => response.data)
             .then((chat) => redirectToChat(chat.id))
             .catch((error) => {
                 if (error.response.status === 303) {
