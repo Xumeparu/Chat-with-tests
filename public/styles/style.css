@@ -30,7 +30,7 @@ form {
 }
 
 #container {
-	background-color: rgba(0,0,0,0.2);
+	/*background-color: rgba(0,0,0,0.2);*/
 
 	position: absolute;
 	top:0;
@@ -45,4 +45,17 @@ form {
 ::placeholder {
 	color: #17162d;
 	opacity: 20%;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #ffffff;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #ffffff;
 }

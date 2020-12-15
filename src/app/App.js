@@ -114,7 +114,11 @@ class App extends React.Component {
                             </ViewHeader>
                         )}
                     />
-                    <PrivateRoute path="/chat/:id" user={user} component={ChatView} />
+                    <PrivateRoute path="/chat/:id" user={user}>
+                        <ViewHeader title="Chat">
+                            <ChatView />
+                        </ViewHeader>
+                    </PrivateRoute>
                     <PrivateRoute path="/profile" user={user}>
                         <ViewHeader title="Profile">
                             <ProfileView />

@@ -5,11 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths.js');
 
 module.exports = {
-    //mode: 'development',
-    //devtool: 'inline-source-map',
     entry: [paths.src + '/index.js'],
     output: {
-        path:paths.build,
+        path: paths.build,
         filename: '[name].bundle.js',
         publicPath: '/',
     },
@@ -51,14 +49,14 @@ module.exports = {
                     'style-loader',
                     { loader: 'css-loader', options: { sourceMap: true, importLoaders: 1 } },
                     //{ loader: 'postcss-loader', options: { sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } },
+                    //{ loader: 'sass-loader', options: { sourceMap: true } },
                 ],
             },
         ]
     },
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, './src')
+            '@': path.resolve(__dirname, '../src')
         }
     }
 };
