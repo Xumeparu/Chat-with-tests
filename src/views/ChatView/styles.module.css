@@ -1,3 +1,12 @@
-.chatView {
+.messages {
     height: 100%;
+}
+
+.form {
+
+}
+
+.forScroll {
+    float: left;
+    clear: both;
 }

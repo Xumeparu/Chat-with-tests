@@ -11,15 +11,22 @@ class ChatView extends React.Component {
         super();
         this.state = {
             messages: [],
-            user: []
+            users: []
         };
 
         this.timer = null;
     }
 
     componentDidMount() {
+        let firstTime = true;
         this.setState({ users: [], messages: [] });
-        this.timer = setInterval(this.getMessages.bind(this), 1000);
+        this.timer = setInterval(async () => {
+            await this.getMessages();
+            if (firstTime) {
+                this.scrollToBottom();
+            }
+            firstTime = false;
+        }, 1000);
     }
 
     componentWillUnmount() {
@@ -29,36 +36,53 @@ class ChatView extends React.Component {
     sendMessage({ content }) {
         apiServices.message
             .create({ content, chatId: this.props.match.params.id })
-            .then(() => this.getMessages());
-    }
-
-    getMessages() {
-        apiServices.message
-            .getMessages(this.props.match.params.id)
-            .then((response) => response.data)
-            .then((messages) => this.setState({ messages }))
-            .then(() => this.getUsers())
-            .then(() => {
-                const newMessages = this.state.messages.map((message) => {
-                    const user = this.state.users.find((user) => user.id === message.userId);
-                    message.nickname = user.nickname;
-                    return message;
-                });
-                this.setState({ messages: newMessages });
+            .then(async () => {
+                await this.getMessages();
+                this.scrollToBottom();
             });
     }
 
-    getUsers() {
+    async getMessages() {
+        function getMessageIds(messages) {
+            return messages.map((message) => message.id);
+        }
+
+        function getOnlyNewMessages(serverMessages, stateMessages) {
+            const serverIds = getMessageIds(serverMessages);
+            const stateIds = getMessageIds(stateMessages);
+            const newIds = serverIds.filter((id) => !stateIds.includes(id));
+            return serverMessages.filter((message) => newIds.includes(message.id));
+        }
+
+        const serverMessages = await apiServices.message.getMessages(this.props.match.params.id);
+        let newMessages = getOnlyNewMessages(serverMessages, this.state.messages);
+        await this.getUsers(newMessages);
+        newMessages = newMessages.map((message) => {
+            const user = this.state.users.find((user) => user.id === message.userId);
+            message.nickname = user.nickname;
+            return message;
+        });
+        this.setState({ messages: [...this.state.messages, ...newMessages] });
+    }
+
+    async getUsers(newMessages) {
         const oldUsers = this.state.users;
         const oldUsersIds = oldUsers.map((user) => user.id);
-        const newUsersIds = [...new Set(this.state.messages.map((message) => message.userId))];
+        const newUsersIds = [...new Set(newMessages.map((message) => message.userId))];
         const toLoad = newUsersIds.filter((id) => !oldUsersIds.includes(id));
 
         if (!toLoad.length) return;
 
-        return Promise.all(toLoad.map((id) => apiServices.user.getById(id)))
-            .then((response) => response.map((response) => response.data))
-            .then((newUsers) => this.setState({ users: [...oldUsers, ...newUsers] }));
+        const newUsers = [];
+        for (let id of toLoad) {
+            const user = await apiServices.user.getById(id);
+            newUsers.push(user);
+        }
+        this.setState({ users: [...oldUsers, ...newUsers] });
+    }
+
+    scrollToBottom() {
+        this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
     }
 
     render() {
@@ -66,10 +90,18 @@ class ChatView extends React.Component {
 
         return (
             <div className="chat-view">
-                <div className={styles.chatView}>
+                <div className={styles.messages}>
                     <h1>Chat</h1>
                     <Index />
                     <MessagesList messages={messages} />
+                    <div
+                        className={styles.forScroll}
+                        ref={(element) => {
+                            this.messagesEnd = element;
+                        }}
+                    />
+                </div>
+                <div className={styles.form}>
                     <MessageForm sendMessage={(data) => this.sendMessage(data)} />
                 </div>
             </div>
