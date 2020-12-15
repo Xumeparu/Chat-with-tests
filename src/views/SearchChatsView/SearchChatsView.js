@@ -22,9 +22,7 @@ export default class SearchChatsView extends React.Component {
 
     handleChatSearch({ title }) {
         this.setState({ title });
-        apiServices.chat
-            .search(title)
-            .then((foundChats) => this.setState({ foundChats }));
+        apiServices.chat.search(title).then((foundChats) => this.setState({ foundChats }));
     }
 
     goHandler(id) {

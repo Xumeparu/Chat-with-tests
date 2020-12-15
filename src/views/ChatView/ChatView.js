@@ -94,12 +94,13 @@ class ChatView extends React.Component {
                 <div className={styles.chatView}>
                     <Index />
                     <div className={styles.messages}>
-                        <MessagesList messages={messages}/>
-                        <div className={styles.forScroll}
+                        <MessagesList messages={messages} />
+                        <div
+                            className={styles.forScroll}
                             ref={(element) => {
                                 this.messagesEnd = element;
-                            }}>
-                        </div>
+                            }}
+                        ></div>
                     </div>
                 </div>
                 <div className={styles.form}>

@@ -22,9 +22,7 @@ export default class ProfileView extends React.Component {
     }
 
     getChatList() {
-        apiServices.chat
-            .getMyChats(this.props.user.id)
-            .then((chats) => this.setState({ chats }));
+        apiServices.chat.getMyChats(this.props.user.id).then((chats) => this.setState({ chats }));
     }
 
     goHandler(id) {

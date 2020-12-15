@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
     withCredentials: true
 });
 
-const jsonInterceptor = [response => response.data, error => Promise.reject(error)];
+const jsonInterceptor = [(response) => response.data, (error) => Promise.reject(error)];
 axiosInstance.interceptors.response.use(...jsonInterceptor);
 
 export default {
