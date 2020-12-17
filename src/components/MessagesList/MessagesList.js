@@ -3,27 +3,23 @@ import Message from '../Message/Message';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-class MessagesList extends React.Component {
-    render() {
-        const { messages } = this.props;
-        return (
-            <div className={styles.messagesList}>
-                <ul className="message-list">
-                    {messages.map((message) => (
-                        <Message
-                            content={message.content}
-                            nickname={message.nickname}
-                            key={message.id}
-                        />
-                    ))}
-                </ul>
-            </div>
-        );
-    }
+export default function MessagesList(props) {
+    const { messages } = props;
+    return (
+        <div className={styles.messagesList}>
+            <ul className="message-list">
+                {messages.map((message) => (
+                    <Message
+                        content={message.content}
+                        nickname={message.nickname}
+                        key={message.id}
+                    />
+                ))}
+            </ul>
+        </div>
+    );
 }
 
 MessagesList.propTypes = {
     messages: PropTypes.array
 };
-
-export default MessagesList;

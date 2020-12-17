@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 export default class UsersSearchView extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             nickname: '',
             errorMessage: '',
