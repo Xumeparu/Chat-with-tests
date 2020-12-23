@@ -11,45 +11,43 @@ export default function Chat({ userId, chat, deleteHandler, joinHandler, goHandl
         return chat.participants.includes(userId);
     }
 
-    function renderChat() {
-        if (isOwner()) {
-            return (
-                <>
-                    <a href="/" onClick={(e) => innerClickHandler(e)}>
-                        <span className={styles.chatTitle}>{chat.title}</span>
-                    </a>
-                    <button className={styles.button} onClick={() => deleteHandler(chat.id)}>
-                        Delete
-                    </button>
-                </>
-            );
-        }
-        if (isParticipant()) {
-            return (
-                <>
-                    <a href="/" onClick={(e) => innerClickHandler(e)}>
-                        <span className={styles.chatTitle}>{chat.title}</span>
-                    </a>
-                    {/* TODO: exit button */}
-                </>
-            );
-        }
-        return (
-            <>
-                <span className={styles.chatTitle}>{chat.title}</span>
-                <button className={styles.button} onClick={() => joinHandler(chat.id)}>
-                    Join
-                </button>
-            </>
-        );
-    }
-
     function innerClickHandler(e) {
         e.preventDefault();
         goHandler(chat.id);
     }
 
-    return <li>{renderChat()}</li>;
+    if (isOwner()) {
+        return (
+            <li>
+                <a href="/" onClick={(e) => innerClickHandler(e)}>
+                    <span className={styles.chatTitle}>{chat.title}</span>
+                </a>
+                <button className={styles.button} onClick={() => deleteHandler(chat.id)}>
+                    Delete
+                </button>
+            </li>
+        );
+    }
+
+    if (isParticipant()) {
+        return (
+            <li>
+                <a href="/" onClick={(e) => innerClickHandler(e)}>
+                    <span className={styles.chatTitle}>{chat.title}</span>
+                </a>
+                {/* TODO: exit button */}
+            </li>
+        );
+    }
+
+    return (
+        <li>
+            <span className={styles.chatTitle}>{chat.title}</span>
+            <button className={styles.button} onClick={() => joinHandler(chat.id)}>
+                Join
+            </button>
+        </li>
+    );
 }
 
 Chat.propTypes = {
