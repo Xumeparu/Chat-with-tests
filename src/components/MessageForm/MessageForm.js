@@ -1,53 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-class MessageForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            content: ''
-        };
-    }
+export default function MessageForm({ sendMessage }) {
+    const [content, setContent] = useState('');
 
-    handleSend(event) {
+    function handleSend(event) {
         event.preventDefault();
-        if (this.state.content === '') {
+        if (content === '') {
             alert('Enter your message, please');
         } else {
-            this.props.sendMessage({
-                content: this.state.content
+            sendMessage({
+                content: content
             });
 
-            this.setState({
-                content: ''
-            });
+            setContent('');
         }
     }
 
-    render() {
-        const { content } = this.state;
-
-        return (
-            <form className="message-form" onSubmit={(event) => this.handleSend(event)}>
-                <input
-                    value={content}
-                    name="content"
-                    className={styles.content}
-                    placeholder="Enter your message"
-                    onChange={(e) => this.setState({ content: e.target.value })}
-                />
-                <br />
-                <button type="submit" className={styles.button}>
-                    Send
-                </button>
-            </form>
-        );
-    }
+    return (
+        <form className="message-form" onSubmit={(event) => handleSend(event)}>
+            <input
+                value={content}
+                name="content"
+                className={styles.content}
+                placeholder="Enter your message"
+                onChange={(e) => setContent(e.target.value)}
+            />
+            <br />
+            <button type="submit" className={styles.button}>
+                Send
+            </button>
+        </form>
+    );
 }
 
 MessageForm.propTypes = {
     sendMessage: PropTypes.func
 };
-
-export default MessageForm;
