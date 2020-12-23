@@ -59,3 +59,8 @@ form {
 ::-webkit-scrollbar-thumb:hover {
 	background-color: #ffffff;
 }
+
+@font-face {
+	font-family: "Diary of an 8-bit mage";
+	src: url("public/fonts/Diary-of-an-8-bit-mage.otf");
+}

@@ -3,8 +3,7 @@ import Message from '../Message/Message';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-export default function MessagesList(props) {
-    const { messages } = props;
+export default function MessagesList({ messages }) {
     return (
         <div className={styles.messagesList}>
             <ul className="message-list">

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export default function ViewHeader(props) {
     const { title, children } = props;
-
     return (
         <>
             <h1>{title}</h1>

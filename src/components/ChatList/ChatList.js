@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import Chat from '../Chat/Chat';
 import styles from './styles.module.css';
 
-export default function ChatList(props) {
-    if (!props.list.length) {
+export default function ChatList({ list, userId, goHandler, joinHandler, deleteHandler }) {
+    if (!list.length) {
         return <span className={styles.spanEmptyList}>Chat list is empty</span>;
     }
     return (
         <ul className="chat-list">
-            {props.list.map((chat) => (
+            {list.map((chat) => (
                 <Chat
-                    userId={props.userId}
+                    userId={userId}
                     chat={chat}
-                    goHandler={props.goHandler}
-                    joinHandler={props.joinHandler}
-                    deleteHandler={props.deleteHandler}
+                    goHandler={goHandler}
+                    joinHandler={joinHandler}
+                    deleteHandler={deleteHandler}
                     key={chat.id}
                 />
             ))}

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-export default function Chat(props) {
+export default function Chat({ userId, chat, deleteHandler, joinHandler, goHandler }) {
     function isOwner() {
-        return props.userId === props.chat.userId;
+        return userId === chat.userId;
     }
 
     function isParticipant() {
-        return props.chat.participants.includes(props.userId);
+        return chat.participants.includes(userId);
     }
 
     function renderChat() {
@@ -16,12 +16,9 @@ export default function Chat(props) {
             return (
                 <>
                     <a href="/" onClick={(e) => innerClickHandler(e)}>
-                        <span className={styles.chatTitle}>{props.chat.title}</span>
+                        <span className={styles.chatTitle}>{chat.title}</span>
                     </a>
-                    <button
-                        className={styles.button}
-                        onClick={() => props.deleteHandler(props.chat.id)}
-                    >
+                    <button className={styles.button} onClick={() => deleteHandler(chat.id)}>
                         Delete
                     </button>
                 </>
@@ -31,7 +28,7 @@ export default function Chat(props) {
             return (
                 <>
                     <a href="/" onClick={(e) => innerClickHandler(e)}>
-                        <span className={styles.chatTitle}>{props.chat.title}</span>
+                        <span className={styles.chatTitle}>{chat.title}</span>
                     </a>
                     {/* TODO: exit button */}
                 </>
@@ -39,8 +36,8 @@ export default function Chat(props) {
         }
         return (
             <>
-                <span className={styles.chatTitle}>{props.chat.title}</span>
-                <button className={styles.button} onClick={() => props.joinHandler(props.chat.id)}>
+                <span className={styles.chatTitle}>{chat.title}</span>
+                <button className={styles.button} onClick={() => joinHandler(chat.id)}>
                     Join
                 </button>
             </>
@@ -49,7 +46,7 @@ export default function Chat(props) {
 
     function innerClickHandler(e) {
         e.preventDefault();
-        props.goHandler(props.chat.id);
+        goHandler(chat.id);
     }
 
     return <li>{renderChat()}</li>;
