@@ -60,5 +60,5 @@ form {
 
 @font-face {
 	font-family: "Diary of an 8-bit mage";
-	src: url("public/fonts/Diary-of-an-8-bit-mage.otf");
+	src: url("../fonts/Diary-of-an-8-bit-mage.otf") format("opentype");
 }
