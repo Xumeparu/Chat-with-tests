@@ -1,89 +1,114 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import apiServices from '../../apiServices';
 import styles from './styles.module.css';
 
-export default class LoginView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            nickname: '',
-            password: '',
-            successMessage: '',
-            errorMessage: ''
-        };
-    }
+export default function LoginView({ location, updateAuthHandler, history }) {
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-    handleSubmit(e) {
-        this.setState({
-            successMessage: null,
-            errorMessage: null
-        });
+    function handleSubmit(values) {
+        setSuccessMessage(null);
+        setErrorMessage(null);
+
         apiServices.auth
             .login({
-                nickname: this.state.nickname,
-                password: this.state.password
+                nickname: values.nickname,
+                password: values.password
             })
             .then(() => {
-                this.setState({ successMessage: 'Welcome' });
-                setTimeout(() => this.redirectAfterLogin(), 2000);
+                setSuccessMessage('Welcome');
+                setTimeout(() => redirectAfterLogin(), 2000);
             })
-            .catch((error) =>
-                this.setState({ errorMessage: 'Error! ' + error.response.data.error })
-            );
-        e.preventDefault();
+            .catch((error) => setErrorMessage('Error! ' + error.response.data.error));
     }
 
-    redirectAfterLogin() {
-        const redirectUrl = this.props.location.state
-            ? this.props.location.state.from.pathname
-            : '/profile';
-        this.props.updateAuthHandler().then(() => this.props.history.push(redirectUrl));
+    function redirectAfterLogin() {
+        const redirectUrl = location.state ? location.state.from.pathname : '/profile';
+        updateAuthHandler().then(() => history.push(redirectUrl));
     }
 
-    render() {
-        const { successMessage, errorMessage, nickname, password } = this.state;
-
-        return (
-            <div className="login-view">
-                {successMessage && (
-                    <div className="success-message">
-                        <div className={styles.successMessage}>{successMessage}</div>
-                    </div>
+    return (
+        <div className="login-view">
+            {successMessage && (
+                <div className="success-message">
+                    <div className={styles.successMessage}>{successMessage}</div>
+                </div>
+            )}
+            <div className={styles.errorMessage}>{errorMessage}</div>
+            <Formik
+                initialValues={{
+                    nickname: '',
+                    password: ''
+                }}
+                validate={(values) => {
+                    const errors = {};
+                    if (values.nickname.length === 0) {
+                        errors.nickname = 'Enter your nickname, please';
+                    }
+                    if (values.password.length === 0) {
+                        errors.password = 'Enter your password, please';
+                    }
+                    if (values.password.length < 7) {
+                        errors.password = 'The password must be at least 7 characters long';
+                    }
+                    return errors;
+                }}
+                onSubmit={(values, { setSubmitting }) => {
+                    handleSubmit(values).then(() => setSubmitting(false));
+                }}
+            >
+                {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                    isSubmitting
+                }) => (
+                    <form onSubmit={handleSubmit}>
+                        {errors.nickname && touched.nickname && (
+                            <div className={styles.validationError}>{errors.nickname}</div>
+                        )}
+                        <div>
+                            <label>
+                                Nickname:&nbsp;
+                                <input
+                                    type="text"
+                                    name="nickname"
+                                    className={styles.inputNickAndPass}
+                                    value={values.nickname}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                            </label>
+                        </div>
+                        {errors.password && touched.password && (
+                            <div className={styles.validationError}>{errors.password}</div>
+                        )}
+                        <div>
+                            <label>
+                                Password:&nbsp;
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className={styles.inputNickAndPass}
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                            </label>
+                        </div>
+                        <button type="submit" className={styles.button} disabled={isSubmitting}>
+                            Go!
+                        </button>
+                    </form>
                 )}
-                <div className={styles.errorMessage}>{errorMessage}</div>
-                <form onSubmit={(e) => this.handleSubmit(e)}>
-                    <div>
-                        <label>
-                            Nickname:&nbsp;
-                            <input
-                                type="text"
-                                name="nickname"
-                                className={styles.inputNickAndPass}
-                                value={nickname}
-                                onChange={(e) => this.setState({ nickname: e.target.value })}
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Password:&nbsp;
-                            <input
-                                type="password"
-                                name="password"
-                                className={styles.inputNickAndPass}
-                                value={password}
-                                onChange={(e) => this.setState({ password: e.target.value })}
-                            />
-                        </label>
-                    </div>
-                    <button type="submit" className={styles.button}>
-                        Go!
-                    </button>
-                </form>
-            </div>
-        );
-    }
+            </Formik>
+        </div>
+    );
 }
 
 LoginView.propTypes = {

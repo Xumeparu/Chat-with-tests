@@ -6,7 +6,7 @@ import apiServices from '../../apiServices';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-class ChatView extends React.Component {
+export default class ChatView extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -114,5 +114,3 @@ class ChatView extends React.Component {
 ChatView.propTypes = {
     match: PropTypes.object
 };
-
-export default ChatView;

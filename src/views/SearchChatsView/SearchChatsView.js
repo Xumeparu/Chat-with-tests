@@ -1,63 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchChatForm from '../../components/SearchChatForm';
 import ChatList from '../../components/ChatList/ChatList';
 import apiServices from '../../apiServices';
 import PropTypes from 'prop-types';
 //import styles from './styles.module.css';
 
-export default class SearchChatsView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: '',
-            foundChats: []
-        };
+export default function SearchChatsView({ user, history }) {
+    const [title, setTitle] = useState('');
+    const [foundChats, setFoundChats] = useState([]);
+
+    function getChatList() {
+        apiServices.chat.search(title).then((foundChats) => setFoundChats(foundChats));
     }
 
-    getChatList() {
-        apiServices.chat
-            .search(this.state.title)
-            .then((foundChats) => this.setState({ foundChats }));
+    function handleChatSearch({ title }) {
+        setTitle(title);
+        apiServices.chat.search(title).then((foundChats) => setFoundChats(foundChats));
     }
 
-    handleChatSearch({ title }) {
-        this.setState({ title });
-        apiServices.chat.search(title).then((foundChats) => this.setState({ foundChats }));
+    function goHandler(id) {
+        history.push(`/chat/${id}`);
     }
 
-    goHandler(id) {
-        this.props.history.push(`/chat/${id}`);
-    }
-
-    joinHandler(id) {
+    function joinHandler(id) {
         if (!confirm('Do you want to join this chat?')) return;
 
-        apiServices.chat.join(id).then(() => this.getChatList());
+        apiServices.chat.join(id).then(() => getChatList());
     }
 
-    deleteHandler(id) {
+    function deleteHandler(id) {
         if (!confirm('Do you want to delete this chat?')) return;
 
-        apiServices.chat.delete(id).then(() => this.getChatList());
+        apiServices.chat.delete(id).then(() => getChatList());
     }
 
-    render() {
-        const { foundChats } = this.state;
-        const { user } = this.props;
-
-        return (
-            <>
-                <SearchChatForm handleSubmit={(data) => this.handleChatSearch(data)} />
-                <ChatList
-                    userId={user.id}
-                    list={foundChats}
-                    goHandler={(id) => this.goHandler(id)}
-                    joinHandler={(id) => this.joinHandler(id)}
-                    deleteHandler={(id) => this.deleteHandler(id)}
-                />
-            </>
-        );
-    }
+    return (
+        <>
+            <SearchChatForm handleSubmit={(data) => handleChatSearch(data)} />
+            <ChatList
+                userId={user.id}
+                list={foundChats}
+                goHandler={(id) => goHandler(id)}
+                joinHandler={(id) => joinHandler(id)}
+                deleteHandler={(id) => deleteHandler(id)}
+            />
+        </>
+    );
 }
 
 SearchChatsView.propTypes = {
