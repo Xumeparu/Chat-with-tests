@@ -26,12 +26,10 @@ form {
 }
 
 .chat-view {
-	height: 80%;
+	height: 75%;
 }
 
 #container {
-	/*background-color: rgba(0,0,0,0.2);*/
-
 	position: absolute;
 	top:0;
 	left: 0;

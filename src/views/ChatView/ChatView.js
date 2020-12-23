@@ -100,7 +100,7 @@ class ChatView extends React.Component {
                             ref={(element) => {
                                 this.messagesEnd = element;
                             }}
-                        ></div>
+                        />
                     </div>
                 </div>
                 <div className={styles.form}>
