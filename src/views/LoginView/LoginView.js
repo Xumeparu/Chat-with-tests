@@ -55,8 +55,8 @@ export default function LoginView({ location, updateAuthHandler, history }) {
                     }
                     return errors;
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                    handleSubmit(values).then(() => setSubmitting(false));
+                onSubmit={(values) => {
+                    handleSubmit(values);
                 }}
             >
                 {({
@@ -65,8 +65,7 @@ export default function LoginView({ location, updateAuthHandler, history }) {
                     touched,
                     handleChange,
                     handleBlur,
-                    handleSubmit,
-                    isSubmitting
+                    handleSubmit
                 }) => (
                     <form onSubmit={handleSubmit}>
                         {errors.nickname && touched.nickname && (
@@ -101,7 +100,7 @@ export default function LoginView({ location, updateAuthHandler, history }) {
                                 />
                             </label>
                         </div>
-                        <button type="submit" className={styles.button} disabled={isSubmitting}>
+                        <button type="submit" className={styles.button}>
                             Go!
                         </button>
                     </form>
